@@ -24,7 +24,7 @@ extension Color: ICAnyColor {
 
     /// Convert into a framework-internal representation of an sRGB color for color calculations. Available for SwiftUI 2 (iOS 14, tvOS 14, macOS 11, macCatalyst 14, watchOS 7 and up.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     public var sRGBA: ICSRGBA? {
         
@@ -106,7 +106,7 @@ public extension Collection where Element == Color {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     var sRGBA: [ICSRGBA] {
         compactMap { $0.sRGBA }

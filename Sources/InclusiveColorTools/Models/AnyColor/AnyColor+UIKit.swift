@@ -17,7 +17,7 @@ extension UIColor: ICAnyColor {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     public var sRGBA: ICSRGBA? {
         guard let isAColor = asValid_sRGBComponentBased() else {
@@ -50,8 +50,8 @@ extension UIColor: ICAnyColor {
     }
     
     public func asValid_sRGBComponentBased() -> UIColor? {
-        guard let esrgb = CGColorSpace(name: CGColorSpace.extendedSRGB),
-              let srgb = CGColorSpace(name: CGColorSpace.sRGB)
+        guard let esrgb = esrgbSpace,
+              let srgb = srgbSpace
         else { return nil }
         
         guard let space = cgColor.colorSpace,
@@ -75,6 +75,10 @@ extension UIColor: ICAnyColor {
     }
     
 }
+
+fileprivate var esrgbSpace = CGColorSpace(name: CGColorSpace.extendedSRGB)
+fileprivate var srgbSpace = CGColorSpace(name: CGColorSpace.sRGB)
+
 
 public extension UIColor {
     
@@ -115,7 +119,7 @@ public extension Collection where Element == UIColor {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     var sRGBA: [ICSRGBA] {
         compactMap { $0.sRGBA }

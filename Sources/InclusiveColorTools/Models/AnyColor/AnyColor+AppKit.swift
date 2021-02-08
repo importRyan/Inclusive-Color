@@ -31,7 +31,7 @@ extension NSColor: ICAnyColor {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     public var sRGBA: ICSRGBA? {
         guard let isAColor = asValid_sRGBComponentBased() else {
@@ -58,6 +58,26 @@ extension NSColor: ICAnyColor {
         guard rgb.colorSpace == .extendedSRGB || rgb.colorSpace == .sRGB
         else { return rgb.usingColorSpace(.extendedSRGB) }
         return rgb
+        
+        if type == .componentBased
+            && (colorSpace == .extendedSRGB || colorSpace == .sRGB) {
+            return self
+
+        } else {
+            
+            guard let rgb = usingType(.componentBased)
+            else { return nil }
+            
+            if colorSpace == .extendedSRGB || colorSpace == .sRGB {
+                return self
+
+            } else if let srgb = rgb.usingColorSpace(.sRGB) {
+                return srgb
+            
+            } else {
+                return nil
+            }
+        }
     }
 }
 
@@ -99,7 +119,7 @@ public extension Collection where Element == NSColor {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     var sRGBA: [ICSRGBA] {
         compactMap { $0.sRGBA }

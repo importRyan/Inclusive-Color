@@ -1,11 +1,15 @@
 import Foundation
 
-/// Assess backgrounds, text colors, and font styles against an accessibility standard across the chosen vision types. By default, all vision types are assessed using the WCAG 2.1 Minimum Contrast 1.4.3 AA criterion, which demands a minimum relative luminance ratio of 4.5:1 for body text and 3:1 for strong text (i.e., at least 18 pt or 14 pt and bold). There are stricter standards than 1.4.3 AA.
+/// Assess backgrounds, text colors, and font styles against an accessibility standard across the chosen vision types.
+///
+/// By default, all vision types are assessed using the WCAG 2.1 Minimum Contrast 1.4.3 AA criterion. Passing requires a minimum relative luminance ratio of 4.5:1 for body text and 3:1 for strong text. The WCAG defines strong text as at least 18 pt or 14 pt and bold.
+///
+/// To use the WCAG's "Enhanced" standard for higher contrast requirements, set the `metric` parameter.
 ///
 /// - Parameters:
-///   - text: Any Swift color object
-///   - fonts: Point size and boldness. By default, both WCAG body and strong styles are assessed. You may choose just one with: `.wcagBody()`, `.wcagStrong()` Draft WCAG3 styles are also supported.
+///   - text: Any Swift color object. Text colors with opacity (e.g., NSColor.secondaryLabelColor) will be blended with background colors the assessment.
 ///   - backgrounds: Any Swift color object
+///   - fonts: Point size and boldness. By default, both WCAG body and strong styles are assessed. You may choose just one with: `.wcagBody()`, `.wcagStrong()` Draft WCAG3 styles are also supported.
 ///   - inclusivity: Specifies the vision types to simulate via an approximate percentage of the population you would like your app to serve
 ///   - metric: Select a pass threshold based on an accessibility standard
 ///   - simulator: A default or customized color vision simulator
@@ -16,7 +20,7 @@ import Foundation
 ///   * detailed pairwise contrast comparisons
 ///   * a basic statistical summary
 ///
-/// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+/// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
 ///
 public func assess<C: ICAnyColor>(text: [C],
                                 backgrounds: [C],

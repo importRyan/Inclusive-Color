@@ -14,7 +14,7 @@ public extension ICPalettes.BangWong {
         
         public let author = "Bang Wong"
         
-        public let license = "Copyright Nature Publishing Group. All Rights Reserved."
+        public let license = "Awaiting Response"
         public let licenseCopy = "Copyright Nature Publishing Group. All Rights Reserved."
         
         public let link = URL(string: "https://doi.org/10.1038/nmeth.1618")!

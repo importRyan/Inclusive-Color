@@ -10,7 +10,7 @@ public extension ICSRGBA {
     ///   - b: 0...1 Blue channel
     ///   - alpha: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(r01: ICColorChannel, g: ICColorChannel, b: ICColorChannel, alpha: ICColorChannel = 1) {
         self.rgb = SIMD3(r01, g, b)
@@ -26,7 +26,7 @@ public extension ICSRGBA {
     ///   - b: 8-bit (0...255) Blue channel
     ///   - a: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(_ red8: Int, _ green8: Int, _ blue8: Int, _ a: Int = 255) {
         self.rgb = SIMD3(red8.div255(),
@@ -42,7 +42,7 @@ public extension ICSRGBA {
     ///   - grey: 0...1 Red Green and Blue channels
     ///   - alpha: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(grey01: ICColorChannel, _ alpha: ICColorChannel = 1) {
         self.rgb = SIMD3(repeating: grey01.clamped01())
@@ -55,7 +55,7 @@ public extension ICSRGBA {
     ///   - grey: 8-bit (0...255) Red Green and Blue channels
     ///   - alpha: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(_ grey8: Int, alpha8: Int = 255) {
         self.rgb = SIMD3(repeating: grey8.div255().clamped01())

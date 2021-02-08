@@ -7,17 +7,23 @@ internal extension ICTextColorsMetrics {
         
         combos.map { combo in
             
-            let score = scoreContrast(text: combo.text.rgb, bg: combo.bg.rgb)
+            let text = combo.text.a == 1
+                ? combo.text.rgb
+                : layer(foreground: combo.text.rgb,
+                        onTopOf: combo.bg.rgb,
+                        with: combo.text.a)
+            
+            let score = scoreContrast(text: text, bg: combo.bg.rgb)
             let pass = didPass(score: score, font: combo.font)
             
             return ICTextColorsComparison(text: combo.text,
-                                        bg: combo.bg,
-                                        font: combo.font,
-                                        score: score,
-                                        didPass: pass,
-                                        indexText: combo.indexText,
-                                        indexBG: combo.indexBG,
-                                        indexFont: combo.indexFont)
+                                          bg: combo.bg,
+                                          font: combo.font,
+                                          score: score,
+                                          didPass: pass,
+                                          indexText: combo.indexText,
+                                          indexBG: combo.indexBG,
+                                          indexFont: combo.indexFont)
         }
     }
 }

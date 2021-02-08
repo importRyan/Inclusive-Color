@@ -3,7 +3,7 @@ import simd
 
 /// Muhammad Safdar and a multinational group of researchers published the Jzazbz color space in 2017 [1]. The space performs well as CAM02-UCS for assessing small and large color differences [1][2], but with substantially lower processing requirements [1][3]. Changing saturation or lightness has less shift in hue.
 ///
-/// [1 - Safdar, Muhammad et al. 2017](https://www.osapublishing.org/DirectPDFAccess/6494974A-D268-43A6-8F26F6C8358AE297_368272/oe-25-13-15131.pdf?da=1&id=368272&seq=0&mobile=no)
+/// [1 - Safdar, Muhammad et al. 2017](https://www.osapublishing.org/oe/fulltext.cfm?uri=oe-25-13-15131&id=368272)
 /// [2 - Zhao Baiyue, Luo Ming Ronnier. 2020.](https://www.osapublishing.org/josaa/abstract.cfm?uri=josaa-37-5-865)
 /// [3 - Rus, Jabob](https://observablehq.com/@jrus/jzazbz)
 ///
@@ -31,7 +31,7 @@ public struct ICJzazbzColorSpace {
     ///
     /// - Returns: Jzazbz D65 color vector (J: absolute lightness, a: red-green, b: yellow-blue)
     ///
-    /// [Safdar, Muhammad et al. 2017](https://www.osapublishing.org/DirectPDFAccess/6494974A-D268-43A6-8F26F6C8358AE297_368272/oe-25-13-15131.pdf?da=1&id=368272&seq=0&mobile=no)
+    /// [Safdar, Muhammad et al. 2017](https://www.osapublishing.org/oe/fulltext.cfm?uri=oe-25-13-15131&id=368272)
     /// [Figshare Code Repo](https://figshare.com/articles/code/JzAzBz_m/5016299)
     /// [Example Implementation](http://im.snibgo.com/jzazbz.htm)
     ///

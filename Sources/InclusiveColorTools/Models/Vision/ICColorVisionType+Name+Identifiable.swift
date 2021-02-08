@@ -10,9 +10,7 @@ extension ICColorVisionType: Identifiable {
             case .deuteranopia: return "Deutan"
             case .protanopia: return "Protan"
             case .tritanopia: return "Tritan"
-            case .monochromacy: return "Rod Monochromat"
-//            case .monochromacyBlueCone: return "Blue Monochromat"
-//            case .monochromacyLMCones: return "LM Monochromat"
+            case .monochromacy: return "Monochromat"
         }
     }
 

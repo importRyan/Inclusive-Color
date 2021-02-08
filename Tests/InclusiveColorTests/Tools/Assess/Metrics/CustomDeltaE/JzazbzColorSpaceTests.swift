@@ -30,7 +30,7 @@ class ICJzazbzColorSpaceTests: XCTestCase {
     
     func testArbitrary0359Threshold_TracksDeltaE_ContrastsWithWCAG2RelativeLuminance() throws {
         let sut = ICJzazbzColorSpace.getScaledDeltaE
-        let sut2 = ICMeaningfulColorsMetrics.customDeltaE(.jzazbzDeltaE_StronglyDifferentiable_24).threshold
+        let sut2 = ICMeaningfulColorsMetrics._experimental(._scaledJzazbzDeltaE_StronglyDifferentiableComparableToCIE2000).threshold
         
         // 187 WCAG Mid-gray
         // Relative Luminance: 0.5
@@ -69,7 +69,7 @@ class ICJzazbzColorSpaceTests: XCTestCase {
     func testDeltaE_0_35ThresholdForLessEasilyDiscernableColorShifts() throws {
         /// Do not use Colormine.org it's flat out wrong
         let sut = ICJzazbzColorSpace.getScaledDeltaE
-        let sut2 = ICMeaningfulColorsMetrics.customDeltaE(.jzazbzDeltaE_StronglyDifferentiable_24).threshold
+        let sut2 = ICMeaningfulColorsMetrics._experimental(._scaledJzazbzDeltaE_StronglyDifferentiableComparableToCIE2000).threshold
 
         let grayGreen  = sRGBColor(r255: 114, g: 140, b: 133)
         

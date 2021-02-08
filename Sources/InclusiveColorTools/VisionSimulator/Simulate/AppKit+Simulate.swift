@@ -5,7 +5,7 @@ public extension NSColor {
     
     /// Simulate a color's perception in a chosen vision type
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter type: A stereotypical color vision type
     /// - Parameter simulator: A default or customized color vision simulator
@@ -24,7 +24,7 @@ public extension NSColor {
     
     /// Simulate a color's perception in vision types representing a target share of the human population
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter inclusivity: Specifies the vision types to simulate via an approximate percentage of the population you would like your app to serve
     /// - Parameter simulator: A default or customized color vision simulator
@@ -43,7 +43,7 @@ public extension NSColor {
     
     /// Simulate a color's perception across seven human vision types
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter simulator: A default or customized color vision simulator
     ///
@@ -62,7 +62,7 @@ public extension Collection where Element == NSColor {
     
     /// Simulate color perception in a chosen vision type
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter type: A stereotypical color vision type
     /// - Parameter simulator: A default or customized color vision simulator
@@ -78,7 +78,7 @@ public extension Collection where Element == NSColor {
     
     /// Simulate color perception in vision types representing a target share of the human population
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter inclusivity: Specifies the vision types to simulate via an approximate percentage of the population you would like your app to serve
     /// - Parameter simulator: A default or customized color vision simulator
@@ -95,7 +95,7 @@ public extension Collection where Element == NSColor {
     
     /// Simulate color perception across seven human vision types
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Parameter type: A stereotypical color vision type
     /// - Parameter simulator: A default or customized color vision simulator

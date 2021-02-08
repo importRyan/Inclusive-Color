@@ -6,10 +6,9 @@ public enum ICMeaningfulColorsMetrics {
     ///
     case WCAG21(WCAG21Contrast)
     
-    
-    /// Experimental addition of delta E perceptual color difference calculations in the Jzazbz color space.
+    /// Experimental metrics for development of the Inclusive Color companion visualization app. I am currently exploring the work of Christopher Healey.
     ///
-    case customDeltaE(CustomDeltaE)
+    case _experimental(_Experimental)
     
     /// WCAG 2.1 Meaningful Color 1.4.11 AA: Requires a minimum 3:1 contrast ratio between adjacent meaningful colors
     ///
@@ -24,7 +23,7 @@ public extension ICMeaningfulColorsMetrics {
     var threshold: ICContrastRatio {
         switch self {
             case .WCAG21(let metric): return metric.threshold
-            case .customDeltaE( let metric): return metric.threshold
+            case ._experimental( let metric): return metric.threshold
             case .`default`: return ICMeaningfulColorsMetrics.WCAG21(.meaningfulColor_1411_AA).threshold
         }
     }
@@ -32,7 +31,7 @@ public extension ICMeaningfulColorsMetrics {
     var method: ICColorContrastMethod {
         switch self {
             case .WCAG21(let metric): return metric.method
-            case .customDeltaE(let metric): return metric.method
+            case ._experimental(let metric): return metric.method
             case .`default`: return ICMeaningfulColorsMetrics.WCAG21(.meaningfulColor_1411_AA).method
         }
     }

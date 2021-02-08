@@ -20,7 +20,7 @@ Recommended default. Bright qualitative colour scheme that is colour-blind safe.
         public var srgba: [ICSRGBA] { SourceColors.allCases.map { $0.srgba} }
         public init() {}
         
-        enum SourceColors: ICSourceColorSet {
+        public enum SourceColors: ICSourceColorSet {
             case blue
             case cyan
             case green

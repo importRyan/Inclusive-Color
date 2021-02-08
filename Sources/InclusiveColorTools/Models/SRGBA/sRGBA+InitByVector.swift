@@ -9,7 +9,7 @@ public extension ICSRGBA {
     ///   - srgb: 0...1 sRGB vector
     ///   - alpha: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(srgb: sRGBColor, _ alpha: UnmutatedAlpha = 1) {
         self.rgb = srgb
@@ -22,7 +22,7 @@ public extension ICSRGBA {
     ///   - linear: 0...1 Linear RGB vector, which will be gamma-encoded
     ///   - alpha: 0...1 Alpha channel
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     init(linearD65: linearRGBColor, _ alpha: UnmutatedAlpha = 1) {
         self.rgb = linearD65.encodeGamma()

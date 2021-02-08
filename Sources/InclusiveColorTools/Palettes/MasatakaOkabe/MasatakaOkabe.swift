@@ -13,7 +13,7 @@ public extension ICPalettes.MasatakaOkabeKeiIto {
         public let description = "The use of this palette is supported by others (Wong, 2011; Levine, 2009) and it is the default scale for the book “Fundamentals of Data Visualization” by Claus Wilke. Review by Joachim Goedhart at https://thenode.biologists.com/data-visualization-with-flying-colors/research/."
         
         public let author = "Masataka Okabe, Kei Ito"
-        public let license = "Kohei Musha. Ask for permission"
+        public let license = "Awaiting Response"
         public let licenseCopy = "Kohei Musha. Ask for permission"
         public let link = URL(string: "https://jfly.uni-koeln.de/color/")!
         

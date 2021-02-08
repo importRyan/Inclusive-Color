@@ -1,76 +1,18 @@
-
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 import AppKit
-#elseif canImport(SwiftUI)
-import SwiftUI
-#elseif canImport(UIKit)
-import UIKit
-#endif
 
-#if canImport(UIKit) || canImport(AppKit) || canImport(SwiftUI)
 public extension ICFontStyle {
-    
-    /// A font's parameters that are relevant to accessibility standards' contrast metrics. For example, WCAG 2.1 applies stricter minimum contrast ratios to body text than to strong text.
+    /// Specify font size and weight from an NSFont for accessibility testing.
     ///
-    /// * WCAG 2.1 defines strong text as 18 points or larger or, if bolded, 14 points or larger.
-    /// * Any other text is considered body text.
-    ///
-    init(pointSize: CGFloat, isBold: Bool) {
-        self.pointSize = Double(pointSize)
+    init(font: NSFont) {
+        let isBold = font.fontDescriptor.symbolicTraits.contains(.bold)
+        self.pointSize = Double(font.pointSize)
+        self.weight = isBold ? 4 : 6
         self.isBold = isBold
-        self.weight = isBold ? 7 : 4
-        self.purpose = pointSize > 18 ? .headline : .body
+        self.WCAG3purpose = pointSize > 17 ? .headline : .body
     }
-    
-    /// Draft WCAG 3 font parameters.
-    ///
-    /// - Parameters:
-    ///   - pointSize: Font point size
-    ///   - weight: Font weight 1 to 9, corresponding to weights of 100 to 900.
-    ///   - purpose: Text purpose, such as copyright, body, or headline
-    ///
-    init(pointSize: CGFloat, cssWeight: Int, purpose: ICWCAG3TextPurpose) {
-        self.pointSize = Double(pointSize)
-        self.weight = cssWeight
-        self.purpose = purpose
-        self.isBold = cssWeight > 5
-    }
-    
-    
-    #if canImport(AppKit) && !targetEnvironment(macCatalyst)
-    /// Draft WCAG 3 font parameters.
-    ///
-    /// - Parameters:
-    ///   - pointSize: Font point size
-    ///   - weight: System-defined font weight
-    ///   - purpose: Text purpose, such as copyright, body, or headline
-    ///
-    init(pointSize: CGFloat, weight: NSFont.Weight, purpose: ICWCAG3TextPurpose) {
-        self.pointSize = Double(pointSize)
-        self.weight = getCSSWeight(of: weight)
-        self.purpose = purpose
-        self.isBold = getCSSWeight(of: weight) > 5
-    }
-    #else
-    /// Draft WCAG 3 font parameters.
-    ///
-    /// - Parameters:
-    ///   - pointSize: Font point size
-    ///   - weight: System-defined font weight
-    ///   - purpose: Text purpose, such as copyright, body, or headline
-    ///
-    init(pointSize: CGFloat, weight: UIFont.Weight, purpose: ICWCAG3TextPurpose) {
-        self.pointSize = Double(pointSize)
-        self.weight = getCSSWeight(of: weight)
-        self.purpose = purpose
-        self.isBold = getCSSWeight(of: weight) > 5
-    }
-    #endif
-    
 }
-#endif
 
-#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 fileprivate func getCSSWeight(of systemWeight: NSFont.Weight) -> Int {
     
     switch systemWeight {
@@ -87,7 +29,24 @@ fileprivate func getCSSWeight(of systemWeight: NSFont.Weight) -> Int {
         default: return 4
     }
 }
-#else
+#endif
+
+#if canImport(UIKit)
+import UIKit
+
+public extension ICFontStyle {
+
+    /// Specify font size and weight from a UIFont for accessibility testing.
+    ///
+    init(font: UIFont) {
+        let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
+        self.pointSize = Double(font.pointSize)
+        self.weight = isBold ? 4 : 6
+        self.isBold = isBold
+        self.WCAG3purpose = pointSize > 17 ? .headline : .body
+    }
+}
+
 fileprivate func getCSSWeight(of systemWeight: UIFont.Weight) -> Int {
     
     switch systemWeight {
@@ -104,5 +63,67 @@ fileprivate func getCSSWeight(of systemWeight: UIFont.Weight) -> Int {
         default: return 4
     }
 }
+
 #endif
- 
+
+#if canImport(SwiftUI)
+import SwiftUI
+
+public extension ICFontStyle {
+
+    /// Specify font size and weight from a SwiftUI default system font for accessibility testing.
+    ///
+    @available(OSX 10.15, iOS 13.0, *)
+    init(style: Font.TextStyle) {
+        self.weight = 4
+        self.WCAG3purpose = .body
+        self.isBold = false
+        
+        if #available(OSX 11.0, iOS 14.0, *) {
+            switch style {
+                case .largeTitle:   self.pointSize = 34
+                    self.WCAG3purpose = .headline
+                case .title:        self.pointSize = 28
+                    self.WCAG3purpose = .headline
+                case .title2:       self.pointSize = 22
+                    self.WCAG3purpose = .headline
+                case .title3:       self.pointSize = 20
+                    self.WCAG3purpose = .headline
+                case .headline:     self.pointSize = 17
+                    self.weight = 6
+                    self.WCAG3purpose = .headline
+                    self.isBold = true
+                    
+                case .body:         self.pointSize = 17
+                case .callout:      self.pointSize = 16
+                case .subheadline:  self.pointSize = 15
+                case .footnote:     self.pointSize = 13
+                case .caption:      self.pointSize = 12
+                case .caption2:     self.pointSize = 11
+                    
+                default:            self.pointSize = 17
+            }
+            
+        } else {
+            switch style {
+                case .largeTitle:   self.pointSize = 34
+                    self.WCAG3purpose = .headline
+                case .title:        self.pointSize = 28
+                    self.WCAG3purpose = .headline
+                case .headline:     self.pointSize = 17
+                    self.weight = 6
+                    self.WCAG3purpose = .headline
+                    self.isBold = true
+                    
+                case .body:         self.pointSize = 17
+                case .callout:      self.pointSize = 16
+                case .subheadline:  self.pointSize = 15
+                case .footnote:     self.pointSize = 13
+                case .caption:      self.pointSize = 12
+                    
+                default:            self.pointSize = 17
+            }
+        }
+    }
+}
+#endif

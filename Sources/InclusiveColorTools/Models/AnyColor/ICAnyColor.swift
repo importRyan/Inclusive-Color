@@ -32,18 +32,18 @@ public extension Array {
     
     /// Convert into a framework-internal representation of an sRGB color for color calculations.
     ///
-    /// - Warning: Extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     /// - Returns: Array of framework-internal sRGB color objects
     ///
-    func convertToSRGBA() -> [ICSRGBA] where Element == ICAnyColor {
+    func convertToSRGBA() -> [ICSRGBA] where Element: ICAnyColor {
         compactMap { $0.sRGBA }
     }
 }
 
 /// Convert into framework-internal sRGB colors for calculations.
 ///
-/// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+/// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
 ///
 /// - Parameter colors: AnyColor (an Apple or framework-internal color)
 ///

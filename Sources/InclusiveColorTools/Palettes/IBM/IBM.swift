@@ -14,7 +14,12 @@ public extension ICPalettes.IBM {
         
         public let author = "IBM"
         public let license = "CC-BY-4.0"
-        public let licenseCopy = LicensesForAccessiblePalettes.ccby4
+        public var licenseCopy = {
+            """
+Copyright IBM Corporation 2017. IBM Design Colors by International Business Machines Corporation is licensed under a Creative Commons Attribution 4.0 International License.
+            Based on a work at https://github.com/IBM-Design/colors.
+""" + LicensesForAccessiblePalettes.ccby4
+        }()
         public let link =  URL(string: "https://web.archive.org/web/20180808011442/https://www.ibm.com/design/language/resources/color-library/")!
         
         public let tags: [ICPaletteUtilityTag] = [.qualitative]

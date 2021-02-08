@@ -15,7 +15,7 @@ import Foundation
 ///   * detailed pairwise contrast comparisons
 ///   * a basic statistical summary
 ///
-/// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+/// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
 ///
 public func assess<C: ICAnyColor>(colors: [C],
                                 pairings pairingStrategy: ICColorPairingStrategy = .allPairs,

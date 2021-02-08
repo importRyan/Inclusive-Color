@@ -3,7 +3,8 @@ import Foundation
 public extension ICPalettes {
     struct AllieOfisher {
         internal static var author: String = { "Allie Ofisher" }()
-        internal static var license: String = { "Unclear, designed while at Cafe Pixo" }()
+        internal static var license: String = { "Awaiting Response" }()
+        internal static var licenseCopy: String = { "Unclear, designed while at Cafe Pixo" }()
         internal static var link: URL = { URL(string: "https://medium.com/cafe-pixo/inclusive-color-palettes-for-the-web-bbfe8cf2410e")! }()
     }
 }
@@ -20,7 +21,7 @@ public extension ICPalettes.AllieOfisher {
         
         public let author = ICPalettes.AllieOfisher.author
         public let license = ICPalettes.AllieOfisher.license
-        public let licenseCopy = ICPalettes.AllieOfisher.license
+        public let licenseCopy = ICPalettes.AllieOfisher.licenseCopy
         public let link = ICPalettes.AllieOfisher.link
         
         public var id: String { title + author }
@@ -58,7 +59,7 @@ public extension ICPalettes.AllieOfisher {
         
         public let author = ICPalettes.AllieOfisher.author
         public let license = ICPalettes.AllieOfisher.license
-        public let licenseCopy = ICPalettes.AllieOfisher.license
+        public let licenseCopy = ICPalettes.AllieOfisher.licenseCopy
         public let link = ICPalettes.AllieOfisher.link
         
         public var id: String { title + author }
@@ -96,7 +97,7 @@ public extension ICPalettes.AllieOfisher {
         
         public let author = ICPalettes.AllieOfisher.author
         public let license = ICPalettes.AllieOfisher.license
-        public let licenseCopy = ICPalettes.AllieOfisher.license
+        public let licenseCopy = ICPalettes.AllieOfisher.licenseCopy
         public let link = ICPalettes.AllieOfisher.link
         
         public var id: String { title + author }

@@ -241,7 +241,7 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                 case ..<9:
                     break
                 case 9..<12:
-                    didPass = font.purpose == .copyright
+                    didPass = font.WCAG3purpose == .copyright
                     break
                 case 12..<13.5:
                     didPass = score >= 100
@@ -286,7 +286,7 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                     break
             
                 case 7.5..<10.5:
-                    didPass = font.purpose == .copyright
+                    didPass = font.WCAG3purpose == .copyright
                     break
                 case 10.5..<12:
                     didPass = score >= 100
@@ -334,10 +334,10 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                     break
             
                 case 7.5..<9:
-                    didPass = font.purpose == .copyright
+                    didPass = font.WCAG3purpose == .copyright
                     break
                 case 9..<10.5:
-                    didPass = font.purpose != .body && score >= 100
+                    didPass = font.WCAG3purpose != .body && score >= 100
                     break
                 case 10.5..<12:
                     didPass = score >= 90
@@ -384,10 +384,10 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                     break
             
                 case 7.5..<9:
-                    didPass = font.purpose == .copyright
+                    didPass = font.WCAG3purpose == .copyright
                     break
                 case 9..<10.5:
-                    didPass = font.purpose != .body && score >= 90
+                    didPass = font.WCAG3purpose != .body && score >= 90
                     break
                 case 10.5..<12:
                     didPass = score >= 80
@@ -431,10 +431,10 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                     break
             
                 case 7.5..<9:
-                    didPass = font.purpose == .copyright
+                    didPass = font.WCAG3purpose == .copyright
                     break
                 case 9..<10.5:
-                    didPass = font.purpose != .body && score >= 80
+                    didPass = font.WCAG3purpose != .body && score >= 80
                     break
                 case 10.5..<12:
                     didPass = score >= 60
@@ -474,13 +474,13 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                 case ..<10.5:
                     break
                 case 10.5..<12:
-                    didPass = font.purpose != .body && score >= 60
+                    didPass = font.WCAG3purpose != .body && score >= 60
                     break
                 case 12..<13.5:
-                    didPass = font.purpose != .body && score >= 50
+                    didPass = font.WCAG3purpose != .body && score >= 50
                     break
                 case 13.5..<18:
-                    didPass = font.purpose != .body && score >= 40
+                    didPass = font.WCAG3purpose != .body && score >= 40
                     break
                 case 18..<22.5:
                     didPass = score >= 38
@@ -508,13 +508,13 @@ fileprivate func didWCAG3TextScorePass(_ score: ICContrastRatio,
                 case ..<12:
                     break
                 case 12..<13.5:
-                    didPass = font.purpose != .body && score >= 50
+                    didPass = font.WCAG3purpose != .body && score >= 50
                     break
                 case 13.5..<18:
-                    didPass = font.purpose != .body && score >= 40
+                    didPass = font.WCAG3purpose != .body && score >= 40
                     break
                 case 18..<22.5:
-                    didPass = font.purpose != .body && score >= 35
+                    didPass = font.WCAG3purpose != .body && score >= 35
                     break
                 case 22.5..<27:
                     didPass = score >= 30

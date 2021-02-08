@@ -46,22 +46,25 @@ extension ICAssessedTextBgFontTrio: CustomStringConvertible {
         var textLabel = ""
         var bgLabel = ""
         
-        if let text = text.sRGBA?.descriptionComponentsRGB888 {
-            textLabel = "\(text.caption)  (\(text.r), \(text.g), \(text.b))"
+        if let srgba = text.sRGBA {
+            let text = srgba.descriptionComponentsRGB888
+            textLabel = "\(text.caption)  (\(text.r), \(text.g), \(text.b)) \(srgba.a == 1 ? "" : String(format: " Alpha: %1.2f", srgba.a))"
         }
         
         if let bg = bg.sRGBA?.descriptionComponentsRGB888 {
             bgLabel = "\(bg.caption)  (\(bg.r), \(bg.g), \(bg.b))"
         }
         
-        let fontLabel = "Pt \(font.pointSize) W \(font.weight * 100)"
+        let fontLabel = "\(String(format: "%1.0f pts", font.pointSize))   \(font.weight * 100) weight"
         
         let scores = self.visionScores.sorted()
             .map { "⚑  \($0.key.name)  \($0.value.descriptionOneDecimal)" }
             .joined(separator: "\n")
         
         return """
-        Text [\(indexes.text)]  \(textLabel)       BG [\(indexes.bg)]  \(bgLabel)      Font [\(indexes.font)] \(fontLabel)
+        Text  [\(indexes.text)]  \(textLabel)
+        Bg    [\(indexes.bg)]  \(bgLabel)
+        Font [\(indexes.font)] \(fontLabel)
         \(scores)
         """
     }

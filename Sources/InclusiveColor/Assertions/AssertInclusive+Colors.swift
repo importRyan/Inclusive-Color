@@ -14,7 +14,7 @@ public extension XCTestCase {
     ///   - message: Optional message to include in the failed assertion flag
     ///   - file: Test file
     ///   - line: Assertion line
-    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself. Swift 5.4 offers built-in methods for finer control of failures.
+    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself.
     ///
     ///  - Returns: Discardable tuple
     ///   - Bool: Did pass inclusivity requirement for all chosen vision types

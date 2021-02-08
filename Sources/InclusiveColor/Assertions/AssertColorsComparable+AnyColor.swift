@@ -9,12 +9,12 @@ public extension XCTestCase {
     ///   - exp: Expected color
     ///   - sut: Test result color
     ///   - rgb888Tolerance: Accuracy affordance as an 8-bit channel value (e.g., 1 or 2.5). Allowance is per-channel. Default is 1.
-    ///   - alpha8Tolerance: Affordance specifically for the alpha channel. Default is zero. The framework should not modify or lose track of an input alpha channel.
+    ///   - alpha8Tolerance: Affordance specifically for the alpha channel. Default is zero.
     ///   - index: Optional: Index of a color in an input array for inclusion in failure messages for more convenient tracing of errors.
     ///   - label: Optional: Convenience label for inclusion in failure messages (e.g., the vision type simulated).
     ///   - file: Passes call site for displaying the failure on the appropriate test case
     ///   - line: Passes call site for displaying the failure on the appropriate line
-    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself. Swift 5.4 offers built-in methods for finer control of failures.
+    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself.
     ///
     /// - Returns: Tuple: isComparable result, summary of failed comparison
     ///

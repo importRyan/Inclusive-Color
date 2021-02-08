@@ -4,7 +4,7 @@ import Foundation
 ///
 /// - Precondition: Input as 8-bit integers unless specified as a 0...1 float
 ///
-/// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+/// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
 ///
 public struct ICSRGBA {
     public var rgb: sRGBColor

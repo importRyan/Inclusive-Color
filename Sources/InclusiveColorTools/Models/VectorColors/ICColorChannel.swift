@@ -2,7 +2,7 @@ import Foundation
 
 public typealias ICColorChannel = Float32
 
-/// Framework does not use or mutate the alpha channel
+/// Alpha used for text–background pairs, but not meaningful color comparisons.
 public typealias UnmutatedAlpha = ICColorChannel
 
 

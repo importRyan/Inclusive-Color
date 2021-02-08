@@ -3,7 +3,11 @@ import XCTest
 
 public extension XCTestCase {
     
-    /// Assess backgrounds, text colors, and font styles against an accessibility standard across the chosen vision types. By default, all vision types are assessed using the WCAG 2.1 Minimum Contrast 1.4.3 AA criterion, which demands a minimum relative luminance ratio of 4.5:1 for body text and 3:1 for strong text (i.e., at least 18 pt or 14 pt and bold). There are stricter standards than 1.4.3 AA.
+    /// Assess backgrounds, text colors, and font styles against an accessibility standard across the chosen vision types.
+    ///
+    /// By default, all vision types are assessed using the WCAG 2.1 Minimum Contrast 1.4.3 AA criterion. Passing requires a minimum relative luminance ratio of 4.5:1 for body text and 3:1 for strong text. The WCAG defines strong text as at least 18 pt or 14 pt and bold.
+    ///
+    /// To use the WCAG's "Enhanced" standard for higher contrast requirements, set the `metric` parameter.
     ///
     /// - Parameters:
     ///   - text: Any Swift color object
@@ -15,7 +19,7 @@ public extension XCTestCase {
     ///   - message: Optional message to include in the failed assertion flag
     ///   - file: Test file
     ///   - line: Assertion line
-    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself. Swift 5.4 offers built-in methods for finer control of failures.
+    ///   - suppressFailure: Default is false. Pass true to collect the error message and pass/fail state, but not trigger the failure handler so you may express an XCTest failure yourself.
     ///
     ///  - Returns: An object that reports:
     ///   * if all background, text, and font combinations did pass the selected standard
@@ -23,7 +27,7 @@ public extension XCTestCase {
     ///   * detailed pairwise contrast comparisons
     ///   * a basic statistical summary
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     ///  - Returns: Discardable tuple
     ///   - Bool: Did pass inclusivity requirement for all chosen vision types

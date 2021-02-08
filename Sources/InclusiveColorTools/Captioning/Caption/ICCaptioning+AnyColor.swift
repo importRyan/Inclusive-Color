@@ -21,7 +21,7 @@ public extension Array {
     ///
     /// - Returns: A string of color captions, with each color on a separate line
     ///
-    func caption() -> String where Element == ICAnyColor {
+    func caption() -> String where Element: ICAnyColor {
         var captions = reduce(String()) { (acc, next) in
             acc.appending("\(next.caption())\n")
         }

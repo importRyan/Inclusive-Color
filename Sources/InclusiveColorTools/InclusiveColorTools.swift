@@ -62,7 +62,7 @@ public struct InclusiveColorTools {
     ///   * detailed pairwise contrast comparisons
     ///   * a basic statistical summary
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     public static func assessText<C: ICAnyColor>(_ text: [C],
                                                backgrounds: [C],
@@ -95,7 +95,7 @@ public struct InclusiveColorTools {
     ///   * detailed pairwise contrast comparisons
     ///   * a basic statistical summary
     ///
-    /// - Warning: Currently, extended sRGB color space inputs are clamped into 0...1 sRGB values.
+    /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
     ///
     public static func assessColors<C: ICAnyColor>(_ colors: [C],
                                                  pairings: ICColorPairingStrategy = .allPairs,

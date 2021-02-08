@@ -5,6 +5,8 @@ public enum ICPaletteUtilityTag {
     case quantitative
     case divergingData
     case sequentialData
+    case multisequentialData
+    case cyclicalData
     
     public var name: String {
         switch self {
@@ -12,6 +14,8 @@ public enum ICPaletteUtilityTag {
             case .divergingData: return "Diverging Data"
             case .qualitative: return "Qualitative"
             case .quantitative: return "Quantitative"
+            case .multisequentialData: return "Multisequential"
+            case .cyclicalData: return "Cyclical"
         }
     }
     
@@ -21,6 +25,8 @@ public enum ICPaletteUtilityTag {
             case .divergingData: return "Deviation from the midpoint is important. For clarity, use only one scheme per screen."
             case .qualitative: return "Nominal or categorical data, where magnitude differences are irrelevant. This includes lines in plots and text in presentations."
             case .quantitative: return ""
+            case .multisequentialData: return "Present distinct sequential series in one plot."
+            case .cyclicalData: return "Periodic data with an orientation"
         }
     }
 }
