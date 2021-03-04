@@ -65,7 +65,7 @@ Companion macOS app
 
  ✉️ importRyan@gmail.com to beta test
 
-![Screenshot](https://i.imgur.com/uJF3yGE.png "Companion macOS App screenshot")
+![Screenshot](https://i.imgur.com/p3yNY5W.png "Companion macOS App screenshot")
 <br><br><br>
 
 
