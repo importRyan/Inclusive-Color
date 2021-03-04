@@ -8,7 +8,7 @@ public extension ICPalettes.FabioCrameri.Cyclic {
         public let title = "RomaO"
         
         public let description = ICPalettes.FabioCrameri.sharedDescription
-        public let tags: [ICPaletteUtilityTag] = [.multisequentialData, .quantitative]
+        public let tags: [ICPaletteUtilityTag] = [.cyclicalData, .quantitative]
         
         public let author = ICPalettes.FabioCrameri.author
         public let license = ICPalettes.FabioCrameri.license
@@ -52,7 +52,7 @@ public extension ICPalettes.FabioCrameri.Cyclic {
         
         public let description = ICPalettes.FabioCrameri.sharedDescription
         
-        public let tags: [ICPaletteUtilityTag] = [.multisequentialData, .quantitative]
+        public let tags: [ICPaletteUtilityTag] = [.cyclicalData, .quantitative]
         
         public let author = ICPalettes.FabioCrameri.author
         public let license = ICPalettes.FabioCrameri.license
@@ -95,7 +95,7 @@ public extension ICPalettes.FabioCrameri.Cyclic {
         public let title = "BrocO"
         
         public let description = ICPalettes.FabioCrameri.sharedDescription
-        public let tags: [ICPaletteUtilityTag] = [.multisequentialData, .quantitative]
+        public let tags: [ICPaletteUtilityTag] = [.cyclicalData, .quantitative]
         
         public let author = ICPalettes.FabioCrameri.author
         public let license = ICPalettes.FabioCrameri.license
@@ -139,7 +139,7 @@ public extension ICPalettes.FabioCrameri.Cyclic {
         public let title = "CorkO"
         
         public let description = ICPalettes.FabioCrameri.sharedDescription
-        public let tags: [ICPaletteUtilityTag] = [.multisequentialData, .quantitative]
+        public let tags: [ICPaletteUtilityTag] = [.cyclicalData, .quantitative]
         
         public let author = ICPalettes.FabioCrameri.author
         public let license = ICPalettes.FabioCrameri.license
@@ -182,7 +182,7 @@ public extension ICPalettes.FabioCrameri.Cyclic {
         public let title = "VikO"
         
         public let description = ICPalettes.FabioCrameri.sharedDescription
-        public let tags: [ICPaletteUtilityTag] = [.multisequentialData, .quantitative]
+        public let tags: [ICPaletteUtilityTag] = [.cyclicalData, .quantitative]
         
         public let author = ICPalettes.FabioCrameri.author
         public let license = ICPalettes.FabioCrameri.license
