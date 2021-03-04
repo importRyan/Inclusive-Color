@@ -58,26 +58,6 @@ extension NSColor: ICAnyColor {
         guard rgb.colorSpace == .extendedSRGB || rgb.colorSpace == .sRGB
         else { return rgb.usingColorSpace(.extendedSRGB) }
         return rgb
-        
-        if type == .componentBased
-            && (colorSpace == .extendedSRGB || colorSpace == .sRGB) {
-            return self
-
-        } else {
-            
-            guard let rgb = usingType(.componentBased)
-            else { return nil }
-            
-            if colorSpace == .extendedSRGB || colorSpace == .sRGB {
-                return self
-
-            } else if let srgb = rgb.usingColorSpace(.sRGB) {
-                return srgb
-            
-            } else {
-                return nil
-            }
-        }
     }
 }
 
