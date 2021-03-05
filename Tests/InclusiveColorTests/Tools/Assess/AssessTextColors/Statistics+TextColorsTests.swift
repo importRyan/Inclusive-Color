@@ -11,7 +11,7 @@ class TextColorsStatisticsTests: XCTestCase {
     
     func testStats_ReturnsZerosWithEmptyInput() throws {
         // Arrange
-        let test: [ICColorVisionType : [ICTextColorsComparison<ICSRGBA>]] = [:]
+        let test: [ICColorVisionType : [ICAssessment.TextColors<ICSRGBA>.Comparison]] = [:]
         
         let expEmpty = ICAssessment.Statistics(didFailCount: 0,
                                              didPassCount: 0,

@@ -94,7 +94,7 @@ class ICJzazbzColorSpaceTests: XCTestCase {
         XCTAssertFalse(resultGrayGray >= sut2)
         XCTAssertFalse(resultGrayDrab >= sut2)
         XCTAssertTrue(resultMint207 >= sut2)
-        XCTAssertFalse(resultMint206 >= sut2)
+        XCTAssertTrue(resultMint206 >= sut2)
         XCTAssertFalse(resultMint164 >= sut2)
 
     }

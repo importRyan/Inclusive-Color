@@ -2,14 +2,9 @@ public struct ICAssessedTextBgFontTrio<C: ICAnyColor> {
     public let text: C
     public let bg: C
     public let font: ICFontStyle
-    public let indexes: Indexes
+    public let indexes: IndexTrio
     public var visionScores: [ICColorVisionType : ICContrastRatio]
-    
-    public struct Indexes: Hashable {
-        public let text: Int
-        public let bg: Int
-        public let font: Int
-    }
+    public var visionDidPass: [ICColorVisionType : Bool] = [:]
     
 }
 

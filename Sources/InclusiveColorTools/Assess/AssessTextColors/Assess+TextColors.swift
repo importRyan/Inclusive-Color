@@ -28,7 +28,7 @@ public func assess<C: ICAnyColor>(text: [C],
                                 inclusivity: ICVisionInclusivity = .maxInclusivity,
                                 metric: ICTextColorsMetrics = .default,
                                 simulator: ICVisionSimulator = InclusiveColorTools.simulator
-) -> ICTextColorsAssessment<C> {
+) -> ICAssessment.TextColors<C> {
     
     let (srgbTextColors, unconvertedText) = convertToSRGBA(text)
     let (srgbBgColors, unconvertedBg) = convertToSRGBA(backgrounds)
@@ -44,7 +44,7 @@ public func assess<C: ICAnyColor>(text: [C],
         unconvertedBg.isEmpty ? [] : [.failedConversions(unconvertedBg)]
     )
     
-    return ICTextColorsAssessment<C>(statistics: stats,
+    return ICAssessment.TextColors<C>(statistics: stats,
                                    errors: errors,
                                    comparisons_sRGBA: contrastComparisons,
                                    simulations_sRGBA: (simulationsText,

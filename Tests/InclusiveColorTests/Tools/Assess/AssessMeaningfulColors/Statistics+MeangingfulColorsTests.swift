@@ -11,7 +11,7 @@ class MeaningfulColorsStatisticsTests: XCTestCase {
     
     func testStats_ReturnsZerosWithEmptyInput() throws {
         // Arrange
-        let test: [ICColorVisionType : [ICMeaningfulColorsComparison<ICSRGBA>]] = [:]
+        let test: [ICColorVisionType : [ICAssessment.MeaningfulColors<ICSRGBA>.Comparison]] = [:]
         
         let expEmpty = ICAssessment.Statistics(didFailCount: 0,
                                              didPassCount: 0,

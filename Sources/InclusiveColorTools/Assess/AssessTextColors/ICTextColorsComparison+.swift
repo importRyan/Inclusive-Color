@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Ryan Ferrell on 2/3/21.
-//
-
 import Foundation
 
 extension ICAssessment.TextColors.Comparison: CustomStringConvertible {
@@ -36,9 +29,9 @@ extension ICAssessment.TextColors.Comparison: CustomStringConvertible {
     }
 }
 
-extension ICTextColorsComparison: Equatable {
+extension ICAssessment.TextColors.Comparison: Equatable {
     
-    public static func == (lhs: ICTextColorsComparison<C>, rhs: ICTextColorsComparison<C>) -> Bool {
+    public static func == (lhs: ICAssessment.TextColors<C>.Comparison, rhs: ICAssessment.TextColors<C>.Comparison) -> Bool {
         
         guard
             lhs.didPass == rhs.didPass &&

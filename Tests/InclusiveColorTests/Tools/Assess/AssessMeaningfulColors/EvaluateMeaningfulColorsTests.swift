@@ -40,7 +40,7 @@ class MeaningfulColorsEvaluateTests: XCTestCase {
             (ICSRGBA(2), ICSRGBA(3), 2, 3),
             (ICSRGBA(3), ICSRGBA(4), 3, 4)
         ]
-        let expectation: [ICMeaningfulColorsComparison<ICSRGBA>] = ICTestCases.MeaningfulColors.case1().test[.typicalTrichromacy]!
+        let expectation: [ICAssessment.MeaningfulColors<ICSRGBA>.Comparison] = ICTestCases.MeaningfulColors.case1().test[.typicalTrichromacy]!
         // Act
         
         let results1 = sut1(test)?.compactMap { $0 } ?? []
@@ -63,7 +63,7 @@ class MeaningfulColorsEvaluateTests: XCTestCase {
             (ICSRGBA(250), ICSRGBA(233), 2, 3)
         ]
         
-        let expectation: [ICMeaningfulColorsComparison<ICSRGBA>] = ICTestCases.MeaningfulColors.case2().test[.typicalTrichromacy]!
+        let expectation: [ICAssessment.MeaningfulColors<ICSRGBA>.Comparison] = ICTestCases.MeaningfulColors.case2().test[.typicalTrichromacy]!
 
         // Act
         

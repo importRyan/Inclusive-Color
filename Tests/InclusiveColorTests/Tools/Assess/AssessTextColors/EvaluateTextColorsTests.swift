@@ -8,7 +8,7 @@ class TextColorsEvaluateTests: XCTestCase {
         ("testEvaluate_ReturnsEmptyComparisonsWithEmptyInput", testEvaluate_ReturnsEmptyComparisonsWithEmptyInput),
         ("testEvaluate_ReturnsFailingComparisonsInOrder", testEvaluate_ReturnsFailingComparisonsInOrder)
     ]
-
+    
     func testEvaluate_ReturnsEmptyComparisonsWithEmptyInput() throws {
         
         // Arrange
@@ -17,7 +17,7 @@ class TextColorsEvaluateTests: XCTestCase {
         let sut3 = ICTextColorsMetrics.WCAG21(.relativeLuminance(thresholdBody: 2, thresholdStrong: 4)).evaluate
         
         let test: [ICTextBGFontTriplet] = []
-
+        
         // Act
         
         let results1 = sut1(test)
@@ -41,7 +41,7 @@ class TextColorsEvaluateTests: XCTestCase {
         
         let test: [ICTextBGFontTriplet] = ICTestCases.TextColors.test1
         
-        let expectation: [ICTextColorsComparison<ICSRGBA>] = ICTestCases.TextColors.case1()[.typicalTrichromacy]!
+        let expectation: [ICAssessment.TextColors<ICSRGBA>.Comparison] = ICTestCases.TextColors.case1()[.typicalTrichromacy]!
         
         // Act
         

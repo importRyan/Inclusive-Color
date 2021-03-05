@@ -1,15 +1,15 @@
 import Foundation
 
+/// An assessed color pair with scores and passing status tracked by vision type.
 public struct ICAssessedColorPair<C: ICAnyColor> {
     public let color1: C
     public let color2: C
     public let indexColor1: Int
     public let indexColor2: Int
     public var visionScores: [ICColorVisionType : ICContrastRatio] = [:]
+    public var visionDidPass: [ICColorVisionType : Bool] = [:]
     
-    public var indexes: Set<Int> {
-        [indexColor1, indexColor2]
-    }
+    public var indexes: Set<Int> { [indexColor1, indexColor2] }
 }
 
 extension ICAssessedColorPair: Equatable, Hashable, Comparable {

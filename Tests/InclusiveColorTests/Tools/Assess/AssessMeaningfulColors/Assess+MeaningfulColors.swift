@@ -13,22 +13,21 @@ class AssessMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.RealWorld.Figma.cases
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .allPairs,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let passingIndexes = result.comparisonsPassingForEveryone.map { $0.indexes }
+        let passingIndexes = result.comparisons.passingForEveryone.map { $0.indexes }
         
         XCTAssertTrue(result.errors.isEmpty)
         XCTAssertFalse(result.didPassForAllVisions)
         
         XCTAssertEqual(result.visionsFailing.count, 5)
         XCTAssertEqual(result.visionsPassing.count, 0)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 113)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 38)
-        XCTAssertEqual(result.comparisonsPassingForEveryone.count, 23)
+        XCTAssertEqual(result.comparisons.failing.count, 113)
+        XCTAssertEqual(result.comparisons.passingForEveryone.count, 23)
         
         XCTAssertEqual(ICTestCases.RealWorld.Figma.expectedPassingIndexPairs, passingIndexes)
         
@@ -41,23 +40,29 @@ class AssessMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.RealWorld.Google.colors
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .sequential,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
+        
+        let partiallyPassingIndexes = result.comparisons.failing
+            .filter { $0.visionDidPass.contains { $0.value }}
+            .reduce(Set<Int>()) { $0.union($1.indexes) }
+        
+        let passingIndexes = result.comparisons.passingForEveryone.map { $0.indexes }
         
         XCTAssertTrue(result.errors.isEmpty)
         XCTAssertFalse(result.didPassForAllVisions)
         
         XCTAssertEqual(result.visionsFailing.count, 5)
         XCTAssertEqual(result.visionsPassing.count, 0)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 3)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 1)
-        XCTAssertEqual(result.comparisonsPassingForEveryone.count, 0)
+        XCTAssertEqual(result.comparisons.failing.count, 3)
         
-        let passingIndexes = result.comparisonsPassingForEveryone.map { $0.indexes }
+        XCTAssertEqual(result.comparisons.failingForEveryone.count, 2)
+        XCTAssertEqual(result.comparisons.passingForEveryone.count, 0)
+        
         XCTAssertEqual([], passingIndexes)
-        XCTAssertTrue(result.comparisonsPassingInAnyVision.first?.indexes == Set<Int>(arrayLiteral: 1,2))
+        XCTAssertEqual(partiallyPassingIndexes, Set<Int>(arrayLiteral: 1,2))
     }
 }

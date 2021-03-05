@@ -1,6 +1,6 @@
 import Foundation
 
-extension ICMeaningfulColorsComparison: CustomStringConvertible {
+extension ICAssessment.MeaningfulColors.Comparison: CustomStringConvertible {
     public var description: String {
         """
         \n
@@ -12,7 +12,7 @@ extension ICMeaningfulColorsComparison: CustomStringConvertible {
     }
 }
 
-extension ICMeaningfulColorsComparison: Equatable {
+extension ICAssessment.MeaningfulColors.Comparison: Equatable {
     public static func == (lhs: ICAssessment.MeaningfulColors<C>.Comparison,
                            rhs: ICAssessment.MeaningfulColors<C>.Comparison) -> Bool {
         

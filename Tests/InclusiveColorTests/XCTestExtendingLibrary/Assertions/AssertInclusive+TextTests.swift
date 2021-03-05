@@ -24,7 +24,7 @@ class AssertInclusiveTextColorsTests: XCTestCase {
         \(testMessage)\n
         """
         
-        let sut = AssertInclusive(text: testText,
+        var sut = AssertInclusive(text: testText,
                                   backgrounds: testBG,
                                   fonts: testFonts,
                                   inclusivity: .maxInclusivity,
@@ -33,21 +33,25 @@ class AssertInclusiveTextColorsTests: XCTestCase {
                                   message: testMessage,
                                   suppressFailure: true)
         
+        let passingForAnyone = sut.result.comparisons.all.filter { $0.value.visionDidPass.contains { $0.value }}
+        let fails = sut.result.comparisons.all.reduce(0) { (result, vision) in
+            return result + vision.value.visionDidPass.filter { $0.value }.count
+        }
+        
         XCTAssertFalse(sut.didPass)
         XCTAssertTrue(sut.failureDescription.hasPrefix(expDescriptionPrefix))
         
-        let comparisonsFailingCount = sut.result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
+        XCTAssertEqual(fails, 10)
+        XCTAssertEqual(sut.result.comparisons.failingForEveryone.count, 2) // someone
         
-        XCTAssertEqual(comparisonsFailingCount, 10)
-        XCTAssertEqual(sut.result.comparisonsFailingInAnyVision.count, 2)
         XCTAssertEqual(sut.result.visionsFailing.count, ICColorVisionType.allCases.count)
         XCTAssertEqual(sut.result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
         
         XCTAssertFalse(sut.result.didPassForAllVisions)
         XCTAssertFalse(sut.result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(sut.result.visionsPassing.isEmpty)
-        XCTAssertEqual(sut.result.comparisonsPassingByVision.count, 5)
-        XCTAssertEqual(sut.result.comparisonsPassingInAnyVision.count, 2)
+        XCTAssertEqual(sut.result.comparisons.allByVision.keys.count, 5)
+        XCTAssertEqual(passingForAnyone.count, 2)
         
         XCTAssertEqual(sut.result.statistics.overall.totalComparisons, 20)
         XCTAssertEqual(sut.result.statistics.overall.minScore, 1.0059619, accuracy: 0.001)
@@ -65,7 +69,7 @@ class AssertInclusiveTextColorsTests: XCTestCase {
         let testBG = ICTestCases.TextColors.test1Bg.swiftUIcolors
         let testFonts = ICTestCases.TextColors.test1Font
         
-        let sut = AssertInclusive(text: testText,
+        var sut = AssertInclusive(text: testText,
                                   backgrounds: testBG,
                                   fonts: testFonts,
                                   inclusivity: .maxInclusivity,
@@ -74,16 +78,16 @@ class AssertInclusiveTextColorsTests: XCTestCase {
                                   message: nil,
                                   suppressFailure: true)
         
-        let expectation: [ICAssessedTextBgFontTrio<ICSRGBA>.Indexes] = [
+        let expectation: [IndexTrio] = [
             .init(text: 0, bg: 0, font: 0),
             .init(text: 0, bg: 1, font: 0),
             .init(text: 1, bg: 0, font: 0),
             .init(text: 1, bg: 1, font: 0),
         ]
         
-        sut.result.comparisonsByVision.forEach {
+        sut.result.comparisons.allByVision.forEach {
             let indexes = $0.value.map {
-                ICAssessedTextBgFontTrio<ICSRGBA>.Indexes(text: $0.indexText, bg: $0.indexBG, font: $0.indexFont)
+                IndexTrio(text: $0.indexText, bg: $0.indexBG, font: $0.indexFont)
             }
             XCTAssertEqual(indexes, expectation)
         }

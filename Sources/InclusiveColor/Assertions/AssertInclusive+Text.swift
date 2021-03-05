@@ -48,10 +48,10 @@ public extension XCTestCase {
         suppressFailure: Bool = false
         
     ) -> (didPass: Bool,
-          result: ICTextColorsAssessment<C>,
+          result: ICAssessment.TextColors<C>,
           failureDescription: String) {
         
-        let result = assess(text: text,
+        var result = assess(text: text,
                             backgrounds: backgrounds,
                             fonts: fonts,
                             inclusivity: inclusivity,
@@ -85,12 +85,12 @@ public extension XCTestCase {
     
 }
 
-fileprivate extension ICTextColorsAssessment {
+fileprivate extension ICAssessment.TextColors where C: ICAnyColor {
     
-    func getFailedColorDescriptions() -> (copy: String, count: String) {
-        let fails = comparisonsFailingInAnyVision
+    mutating func getFailedColorDescriptions() -> (copy: String, count: String) {
+        let fails = comparisons.failing
         
-        var uniqueTextLayouts = Set<ICAssessedTextBgFontTrio<C>.Indexes>()
+        var uniqueTextLayouts = Set<IndexTrio>()
         var descriptions: [String] = []
         
         fails.forEach {

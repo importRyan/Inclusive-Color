@@ -18,25 +18,24 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.MeaningfulColors.test1
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .allPairs,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let comparisonsFailingCount = result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
+        let totalComparisons = result.comparisons_sRGBA[.typicalTrichromacy]!.count * result.comparisons_sRGBA.keys.count
         
-        XCTAssertEqual(comparisonsFailingCount, 30)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 6)
+        XCTAssertEqual(totalComparisons, 30)
+        XCTAssertEqual(result.comparisons.failingForEveryone.count, 6)
         XCTAssertEqual(result.visionsFailing.count, ICColorVisionType.allCases.count)
         XCTAssertEqual(result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
         
         XCTAssertFalse(result.didPassForAllVisions)
         XCTAssertFalse(result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(result.visionsPassing.isEmpty)
-        XCTAssertTrue(result.comparisonsPassingByVision.isEmpty)
+        XCTAssertTrue(result.comparisons.passingForEveryone.isEmpty)
         XCTAssertEqual(result.statistics.overall.didPassCount, 0)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 0)
         
         XCTAssertEqual(result.statistics.overall.totalComparisons, 30)
         XCTAssertEqual(result.statistics.overall.minScore, 1.0059619, accuracy: 0.001)
@@ -51,25 +50,29 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.MeaningfulColors.test2
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .allPairs,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let comparisonsFailingCount = result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
+        let partiallyPassingIndexes = result.comparisons.failing
+            .filter { $0.visionDidPass.contains { $0.value }}
+            .reduce(Set<Int>()) { $0.union($1.indexes) }
         
-        XCTAssertEqual(comparisonsFailingCount, 5)
+        let totalComparisons = result.comparisons_sRGBA[.typicalTrichromacy]!.count * result.comparisons_sRGBA.keys.count
+        
+        XCTAssertEqual(totalComparisons, 15)
         XCTAssertEqual(result.visionsFailing.count, ICColorVisionType.allCases.count)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 1)
+        XCTAssertEqual(result.comparisons.failing.count, 1)
         XCTAssertEqual(result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
         
         XCTAssertFalse(result.didPassForAllVisions)
         XCTAssertFalse(result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(result.visionsPassing.isEmpty)
-        XCTAssertEqual(result.comparisonsPassingByVision.count, 5)
         XCTAssertEqual(result.statistics.overall.didPassCount, 0)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 2)
+        XCTAssertEqual(result.comparisons.passingForEveryone.count, 2)
+        XCTAssertEqual(partiallyPassingIndexes.count, 0)
         
         XCTAssertEqual(result.statistics.overall.totalComparisons, 15)
         XCTAssertEqual(result.statistics.overall.minScore, 1.1631811)
@@ -84,25 +87,29 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.MeaningfulColors.test1
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .sequential,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let comparisonsFailingCount = result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
+        let partiallyPassingIndexes = result.comparisons.failing
+            .filter { $0.visionDidPass.contains { $0.value }}
+            .reduce(Set<Int>()) { $0.union($1.indexes) }
         
-        XCTAssertEqual(comparisonsFailingCount, 15)
+        let totalComparisons = result.comparisons_sRGBA[.typicalTrichromacy]!.count * result.comparisons_sRGBA.keys.count
+        
+        XCTAssertEqual(totalComparisons, 15)
         XCTAssertEqual(result.visionsFailing.count, ICColorVisionType.allCases.count)
         XCTAssertEqual(result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 3)
+        XCTAssertEqual(result.comparisons.failing.count, 3)
         
         XCTAssertFalse(result.didPassForAllVisions)
         XCTAssertFalse(result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(result.visionsPassing.isEmpty)
-        XCTAssertTrue(result.comparisonsPassingByVision.isEmpty)
+        XCTAssertTrue(result.comparisons.passingForEveryone.isEmpty)
         XCTAssertEqual(result.statistics.overall.didPassCount, 0)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 0)
+        XCTAssertEqual(partiallyPassingIndexes.count, 0)
         
         XCTAssertEqual(result.statistics.overall.totalComparisons, 15)
         XCTAssertEqual(result.statistics.overall.minScore, 1.0059619, accuracy: 0.001)
@@ -118,25 +125,29 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         
         let test = ICTestCases.MeaningfulColors.test2
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .sequential,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let comparisonsFailingCount = result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
+        let partiallyPassingIndexes = result.comparisons.failing
+            .filter { $0.visionDidPass.contains { $0.value }}
+            .reduce(Set<Int>()) { $0.union($1.indexes) }
         
-        XCTAssertEqual(comparisonsFailingCount, 5)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 1)
+        let totalComparisons = result.comparisons_sRGBA[.typicalTrichromacy]!.count * result.comparisons_sRGBA.keys.count
+
+        XCTAssertEqual(totalComparisons, 10)
+        XCTAssertEqual(result.comparisons.failing.count, 1)
         XCTAssertEqual(result.visionsFailing.count, ICColorVisionType.allCases.count)
         XCTAssertEqual(result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
         
         XCTAssertFalse(result.didPassForAllVisions)
         XCTAssertFalse(result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(result.visionsPassing.isEmpty)
-        XCTAssertEqual(result.comparisonsPassingByVision.count, 5)
         XCTAssertEqual(result.statistics.overall.didPassCount, 0)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 1)
+        XCTAssertEqual(partiallyPassingIndexes.count, 0)
+        XCTAssertEqual(result.comparisons.passingForEveryone.count, 1)
         
         XCTAssertEqual(result.statistics.overall.totalComparisons, 10)
         XCTAssertEqual(result.statistics.overall.minScore, 1.1631811)
@@ -152,7 +163,7 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         let test = ICTestCases.MeaningfulColors.test1
         let exp = ICTestCases.MeaningfulColors.case1().test[.typicalTrichromacy]!
         
-        let result = assess(colors: test,
+        var result = assess(colors: test,
                             pairings: .sequential,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.meaningfulColor_1411_AA),
@@ -160,7 +171,7 @@ class AssessmentMeaningfulColorsTests: XCTestCase {
         
         
         // Indexes are purposefully off in the expectation
-        result.comparisonsByVision.forEach {
+        result.comparisons.allByVision.forEach {
             zip(exp, $0.value).forEach { (exp, result) in
                 XCTAssertEqual(exp.indexLeft - 1, result.indexLeft)
                 XCTAssertEqual(exp.indexRight - 1, result.indexRight)

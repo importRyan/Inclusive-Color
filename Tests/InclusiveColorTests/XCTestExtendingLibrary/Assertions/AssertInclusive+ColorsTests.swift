@@ -21,7 +21,7 @@ class AssertInclusiveColorsTests: XCTestCase {
         \(testMessage)\n
         """
 
-        let sut = AssertInclusive(colors: test,
+        var sut = AssertInclusive(colors: test,
                                   pairings: .allPairs,
                                   inclusivity: .maxInclusivity,
                                   metric: .WCAG21(.meaningfulColor_1411_AA),
@@ -32,16 +32,15 @@ class AssertInclusiveColorsTests: XCTestCase {
         XCTAssertFalse(sut.didPass)
         XCTAssertTrue(sut.failureDescription.hasPrefix(expDescriptionPrefix))
         
-        let passingIndexes = sut.result.comparisonsPassingForEveryone.map { $0.indexes }
+        let passingIndexes = sut.result.comparisons.passingForEveryone.map { $0.indexes }
         
         XCTAssertTrue(sut.result.errors.isEmpty)
         XCTAssertFalse(sut.result.didPassForAllVisions)
         
         XCTAssertEqual(sut.result.visionsFailing.count, 5)
         XCTAssertEqual(sut.result.visionsPassing.count, 0)
-        XCTAssertEqual(sut.result.comparisonsFailingInAnyVision.count, 113)
-        XCTAssertEqual(sut.result.comparisonsPassingInAnyVision.count, 38)
-        XCTAssertEqual(sut.result.comparisonsPassingForEveryone.count, 23)
+        XCTAssertEqual(sut.result.comparisons.failing.count, 113)
+        XCTAssertEqual(sut.result.comparisons.passingForEveryone.count, 23)
         
         XCTAssertEqual(ICTestCases.RealWorld.Figma.expectedPassingIndexPairs, passingIndexes)
         
@@ -59,7 +58,7 @@ class AssertInclusiveColorsTests: XCTestCase {
         \(testDescription)\n
         """
         
-        let sut = AssertInclusive(colors: test,
+        var sut = AssertInclusive(colors: test,
                                   pairings: .sequential,
                                   inclusivity: .maxInclusivity,
                                   metric: .WCAG21(.meaningfulColor_1411_AA),
@@ -75,13 +74,16 @@ class AssertInclusiveColorsTests: XCTestCase {
         
         XCTAssertEqual(sut.result.visionsFailing.count, 5)
         XCTAssertEqual(sut.result.visionsPassing.count, 0)
-        XCTAssertEqual(sut.result.comparisonsFailingInAnyVision.count, 3)
-        XCTAssertEqual(sut.result.comparisonsPassingInAnyVision.count, 1)
-        XCTAssertEqual(sut.result.comparisonsPassingForEveryone.count, 0)
+        XCTAssertEqual(sut.result.comparisons.failing.count, 3)
+        XCTAssertEqual(sut.result.comparisons.passingForEveryone.count, 0)
         
-        let passingIndexes = sut.result.comparisonsPassingForEveryone.map { $0.indexes }
+        let passingIndexes = sut.result.comparisons.passingForEveryone.map { $0.indexes }
+        let partiallyPassingIndexes = sut.result.comparisons.failing
+            .filter { $0.visionDidPass.contains { $0.value }}
+            .reduce(Set<Int>()) { $0.union($1.indexes) }
+
         XCTAssertEqual([], passingIndexes)
-        XCTAssertTrue(sut.result.comparisonsPassingInAnyVision.first?.indexes == Set<Int>(arrayLiteral: 1,2))
+        XCTAssertEqual(partiallyPassingIndexes, Set<Int>(arrayLiteral: 1,2))
     }
     
     func test50InputColors_For6kPairwiseComparisons_Requires80ms_onM1MacMini() throws {

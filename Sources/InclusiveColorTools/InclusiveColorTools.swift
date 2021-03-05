@@ -70,7 +70,7 @@ public struct InclusiveColorTools {
                                                inclusivity: ICVisionInclusivity = .maxInclusivity,
                                                metric: ICTextColorsMetrics = .default,
                                                simulator: ICVisionSimulator = simulator
-    ) -> ICTextColorsAssessment<C> {
+    ) -> ICAssessment.TextColors<C> {
         
         assess(text: text,
                backgrounds: backgrounds,
@@ -102,7 +102,7 @@ public struct InclusiveColorTools {
                                                  inclusivity: ICVisionInclusivity = .maxInclusivity,
                                                  metric: ICMeaningfulColorsMetrics = .WCAG21(.meaningfulColor_1411_AA),
                                                  simulator: ICVisionSimulator = simulator
-    ) -> MeaningfulColorsAssessment<C> {
+    ) -> ICAssessment.MeaningfulColors<C> {
         
         assess(colors: colors,
                pairings: pairings,

@@ -18,11 +18,11 @@ import Foundation
 /// - Warning: Extended sRGB inputs are clamped into standard sRGB for compatibility with several simulation algorithms.
 ///
 public func assess<C: ICAnyColor>(colors: [C],
-                                pairings pairingStrategy: ICColorPairingStrategy = .allPairs,
-                                inclusivity: ICVisionInclusivity = .maxInclusivity,
-                                metric: ICMeaningfulColorsMetrics = .default,
-                                simulator: ICVisionSimulator = InclusiveColorTools.simulator
-) -> MeaningfulColorsAssessment<C> {
+                                  pairings pairingStrategy: ICColorPairingStrategy = .allPairs,
+                                  inclusivity: ICVisionInclusivity = .maxInclusivity,
+                                  metric: ICMeaningfulColorsMetrics = .default,
+                                  simulator: ICVisionSimulator = InclusiveColorTools.simulator
+) -> ICAssessment.MeaningfulColors<C> {
     
     let (srgbColors, unconvertedColors) = convertToSRGBA(colors)
     let simulations = srgbColors.simulate(for: inclusivity, simulator)
@@ -38,8 +38,8 @@ public func assess<C: ICAnyColor>(colors: [C],
     let stats = comparisons.getStats()
     let errors: [ICAssessment.Error<C>] = unconvertedColors.isEmpty ? [] : [.failedConversions(unconvertedColors)]
     
-    return MeaningfulColorsAssessment<C>(statistics: stats,
-                                         errors: errors,
-                                         comparisons_sRGBA: comparisons,
-                                         simulations_sRGBA: simulations)
+    return ICAssessment.MeaningfulColors<C>(statistics: stats,
+                                            errors: errors,
+                                            comparisons_sRGBA: comparisons,
+                                            simulations_sRGBA: simulations)
 }

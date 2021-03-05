@@ -5,7 +5,7 @@ public extension Dictionary where Key == ICColorVisionType {
     /// Returns a summary of passing, failing, average, and extreme scores for all vision types — both overall and for each vision type simulated.
     ///
     func getStats<C: ICAnyColor>() -> ICAssessmentStatistics
-    where Value == [ICMeaningfulColorsComparison<C>] {
+    where Value == [ICAssessment.MeaningfulColors<C>.Comparison] {
         
         let statsByVision = mapValues { $0.getStats() }
         
@@ -57,7 +57,7 @@ public extension Array {
     /// Returns a summary of passing, failing, average, and extreme scores for one vision type.
     ///
     func getStats<C: ICAnyColor>() -> ICAssessment.Statistics
-    where Element == ICMeaningfulColorsComparison<C> {
+    where Element == ICAssessment.MeaningfulColors<C>.Comparison {
         
         var passCount = 0
         var failureCount = 0

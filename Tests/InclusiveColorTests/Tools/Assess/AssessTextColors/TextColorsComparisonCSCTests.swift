@@ -10,14 +10,14 @@ class TextColorsCustomStringConvertibleTests: XCTestCase {
     ]
     
     func testDescription_ValidObject() throws {
-        let sut = ICTextColorsComparison(text: ICTestCases.TextColors.test1[0].text,
-                                       bg: ICTestCases.TextColors.test1[0].bg,
-                                       font: ICTestCases.TextColors.test1[0].font,
-                                       score: 3.0060028,
-                                       didPass: false,
-                                       indexText: ICTestCases.TextColors.test1[0].indexText,
-                                       indexBG: ICTestCases.TextColors.test1[0].indexBG,
-                                       indexFont: ICTestCases.TextColors.test1[0].indexFont)
+        let sut = ICAssessment.TextColors.Comparison(text: ICTestCases.TextColors.test1[0].text,
+                                                     bg: ICTestCases.TextColors.test1[0].bg,
+                                                     font: ICTestCases.TextColors.test1[0].font,
+                                                     score: 3.0060028,
+                                                     didPass: false,
+                                                     indexText: ICTestCases.TextColors.test1[0].indexText,
+                                                     indexBG: ICTestCases.TextColors.test1[0].indexBG,
+                                                     indexFont: ICTestCases.TextColors.test1[0].indexFont)
         let expectation = """
         \n
         Text [7]  Blue  (1, 2, 3)
@@ -33,14 +33,14 @@ class TextColorsCustomStringConvertibleTests: XCTestCase {
     
     func testDescription_InvalidObject() throws {
         
-        let sut = ICTextColorsComparison(text: ICSRGBA(1, .min, .max),
-                                       bg: ICTestCases.TextColors.test1[0].bg,
-                                       font: ICTestCases.TextColors.test1[0].font,
-                                       score: .nan,
-                                       didPass: false,
-                                       indexText: ICTestCases.TextColors.test1[0].indexText,
-                                       indexBG: ICTestCases.TextColors.test1[0].indexBG,
-                                       indexFont: ICTestCases.TextColors.test1[0].indexFont)
+        let sut = ICAssessment.TextColors.Comparison(text: ICSRGBA(1, .min, .max),
+                                                     bg: ICTestCases.TextColors.test1[0].bg,
+                                                     font: ICTestCases.TextColors.test1[0].font,
+                                                     score: .nan,
+                                                     didPass: false,
+                                                     indexText: ICTestCases.TextColors.test1[0].indexText,
+                                                     indexBG: ICTestCases.TextColors.test1[0].indexBG,
+                                                     indexFont: ICTestCases.TextColors.test1[0].indexFont)
         let expectation = """
         \n
         Text [7]  Violet  (1, 0, 255)

@@ -34,10 +34,10 @@ public extension XCTestCase {
         suppressFailure: Bool = false
         
     ) -> (didPass: Bool,
-          result: MeaningfulColorsAssessment<C>,
+          result: ICAssessment.MeaningfulColors<C>,
           failureDescription: String) {
         
-        let result = assess(colors: colors,
+        var result = assess(colors: colors,
                             pairings: pairingStrategy,
                             inclusivity: inclusivity,
                             metric: metric,
@@ -69,10 +69,10 @@ public extension XCTestCase {
     
 }
 
-fileprivate extension MeaningfulColorsAssessment {
+fileprivate extension ICAssessment.MeaningfulColors {
     
-    func getFailedColorDescriptions() -> (copy: String, count: String) {
-        let fails = comparisonsFailingInAnyVision
+    mutating func getFailedColorDescriptions() -> (copy: String, count: String) {
+        let fails = comparisons.failing
         
         var uniqueColors = Set<Int>()
         var descriptions: [String] = []

@@ -3,7 +3,7 @@ import Foundation
 internal extension ICTextColorsMetrics {
     
     func evaluate(_ combos: [ICTextBGFontTriplet]
-    ) -> [ICTextColorsComparison<ICSRGBA>] {
+    ) -> [ICAssessment.TextColors<ICSRGBA>.Comparison] {
         
         combos.map { combo in
             
@@ -16,14 +16,14 @@ internal extension ICTextColorsMetrics {
             let score = scoreContrast(text: text, bg: combo.bg.rgb)
             let pass = didPass(score: score, font: combo.font)
             
-            return ICTextColorsComparison(text: combo.text,
-                                          bg: combo.bg,
-                                          font: combo.font,
-                                          score: score,
-                                          didPass: pass,
-                                          indexText: combo.indexText,
-                                          indexBG: combo.indexBG,
-                                          indexFont: combo.indexFont)
+            return ICAssessment.TextColors.Comparison(text: combo.text,
+                                                      bg: combo.bg,
+                                                      font: combo.font,
+                                                      score: score,
+                                                      didPass: pass,
+                                                      indexText: combo.indexText,
+                                                      indexBG: combo.indexBG,
+                                                      indexFont: combo.indexFont)
         }
     }
 }

@@ -13,26 +13,23 @@ class AssessTextColorsTests: XCTestCase {
     
     func testAssessTextColors_FlagsKnownPassesAndFailures() throws {
 
-        let result = assess(text: ICTestCases.TextColors.test1Text,
+        var result = assess(text: ICTestCases.TextColors.test1Text,
                             backgrounds: ICTestCases.TextColors.test1Bg,
                             fonts: ICTestCases.TextColors.test1Font,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.minimumContrast_143_AA),
                             simulator: ICVisionSimulator_Machado())
-
         
-        let comparisonsFailingCount = result.comparisonsFailingByVision.reduce(0) { $0 + $1.value.count }
-        
-        XCTAssertEqual(comparisonsFailingCount, 10)
-        XCTAssertEqual(result.comparisonsFailingInAnyVision.count, 2)
+        XCTAssertEqual(result.comparisons.failing.count, 2)
+        XCTAssertEqual(result.comparisons.failingForEveryone.count, 2)
         XCTAssertEqual(result.visionsFailing.count, ICColorVisionType.allCases.count)
         XCTAssertEqual(result.statistics.overall.didFailCount, ICColorVisionType.allCases.count)
         
         XCTAssertFalse(result.didPassForAllVisions)
         XCTAssertFalse(result.statistics.overall.didPassAllComparisons)
         XCTAssertTrue(result.visionsPassing.isEmpty)
-        XCTAssertEqual(result.comparisonsPassingByVision.count, 5)
-        XCTAssertEqual(result.comparisonsPassingInAnyVision.count, 2)
+        XCTAssertEqual(result.comparisons.allByVision.count, 5)
+        XCTAssertEqual(result.comparisons.passingForEveryone.count, 2)
         
         XCTAssertEqual(result.statistics.overall.totalComparisons, 20)
         XCTAssertEqual(result.statistics.overall.minScore, 1.0059619, accuracy: 0.001)
@@ -47,23 +44,23 @@ class AssessTextColorsTests: XCTestCase {
     
     func testAssessTextColors_MaintainsOrder() throws {
         
-        let result = assess(text: ICTestCases.TextColors.test1Text,
+        var result = assess(text: ICTestCases.TextColors.test1Text,
                             backgrounds: ICTestCases.TextColors.test1Bg,
                             fonts: ICTestCases.TextColors.test1Font,
                             inclusivity: .maxInclusivity,
                             metric: .WCAG21(.minimumContrast_143_AA),
                             simulator: ICVisionSimulator_Machado())
         
-        let expectation: [ICAssessedTextBgFontTrio<ICSRGBA>.Indexes] = [
+        let expectation: [IndexTrio] = [
             .init(text: 0, bg: 0, font: 0),
             .init(text: 0, bg: 1, font: 0),
             .init(text: 1, bg: 0, font: 0),
             .init(text: 1, bg: 1, font: 0),
         ]
         
-        result.comparisonsByVision.forEach {
+        result.comparisons.allByVision.forEach {
             let indexes = $0.value.map {
-                ICAssessedTextBgFontTrio<ICSRGBA>.Indexes(text: $0.indexText, bg: $0.indexBG, font: $0.indexFont)
+                IndexTrio(text: $0.indexText, bg: $0.indexBG, font: $0.indexFont)
             }
             XCTAssertEqual(indexes, expectation)
         }

@@ -10,12 +10,12 @@ class MeaningfulColorsCustomStringConvertibleTests: XCTestCase {
     ]
     
     func testDescription_ValidObject() throws {
-        let sut = ICMeaningfulColorsComparison(colorL: ICSRGBA(1, 2, 3),
-                                             colorR: ICSRGBA(2, 3, 4),
-                                             score: 0.22,
-                                             didPass: true,
-                                             indexLeft: 2,
-                                             indexRight: 3)
+        let sut = ICAssessment.MeaningfulColors.Comparison(colorL: ICSRGBA(1, 2, 3),
+                                                           colorR: ICSRGBA(2, 3, 4),
+                                                           score: 0.22,
+                                                           didPass: true,
+                                                           indexLeft: 2,
+                                                           indexRight: 3)
         
         let expectation = """
         \n
@@ -32,12 +32,12 @@ class MeaningfulColorsCustomStringConvertibleTests: XCTestCase {
     
     func testDescription_InvalidObject() throws {
         
-        let sut = ICMeaningfulColorsComparison(colorL: ICSRGBA(r01: .nan, g: .nan, b: .nan),
-                                             colorR: ICSRGBA(2, 3, 4),
-                                             score: 0.22,
-                                             didPass: true,
-                                             indexLeft: 2,
-                                             indexRight: 3)
+        let sut = ICAssessment.MeaningfulColors.Comparison(colorL: ICSRGBA(r01: .nan, g: .nan, b: .nan),
+                                                           colorR: ICSRGBA(2, 3, 4),
+                                                           score: 0.22,
+                                                           didPass: true,
+                                                           indexLeft: 2,
+                                                           indexRight: 3)
         
         let expectation = """
         \n
