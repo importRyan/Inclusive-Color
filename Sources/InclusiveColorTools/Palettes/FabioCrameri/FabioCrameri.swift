@@ -2,9 +2,9 @@ import Foundation
 
 public extension ICPalettes {
     
-    /// Suite of scientific, colour-vision deficiency friendly and perceptually uniform colour maps
+    /// Suite of scientific, color-vision deficiency friendly and perceptually uniform color maps
     ///
-    /// Scientific colour maps v 7.0 release date 2021 February 2. [Zenodo archive](https://zenodo.org/record/4491293#.YCv6ai1h1zU)
+    /// Scientific color maps v 7.0 release date 2021 February 2. [Zenodo archive](https://zenodo.org/record/4491293#.YCv6ai1h1zU)
     ///
     struct FabioCrameri {
         
@@ -30,3 +30,4 @@ THE SOFTWARE IS PROVIDED ”AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
         internal static var sharedDescription: String = { "Fabio's scientific color maps are perceptually uniform to portray linear data without visual distortions, which are common for rainbow-based schemes. His maps work well in black and white presentation. For continuous plots or finer interpolations, use Fabio's python repo." }()
     }
 }
+

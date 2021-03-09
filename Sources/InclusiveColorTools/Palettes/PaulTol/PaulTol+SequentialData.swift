@@ -2,7 +2,7 @@ import Foundation
 
 public extension ICPalettes.PaulTol.SequentialData {
     
-    /// See Figure 20 for a curated selection [for maps from 1 to 23 colors](https://personal.sron.nl/~pault/data/colourschemes.pdf).
+    /// See Figure 20 for a curated selection [for maps from 1 to 23 colors](https://personal.sron.nl/~pault/data/colorschemes.pdf).
     ///
     struct DiscreteRainbow_UseMakeRainbowFunc: AccessiblePalette {
         

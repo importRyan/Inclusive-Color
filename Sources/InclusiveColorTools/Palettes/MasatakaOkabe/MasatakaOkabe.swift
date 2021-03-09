@@ -10,7 +10,7 @@ public extension ICPalettes.MasatakaOkabeKeiIto {
         
         public let title = "Vivid"
         
-        public let description = "The use of this palette is supported by others (Wong, 2011; Levine, 2009) and it is the default scale for the book “Fundamentals of Data Visualization” by Claus Wilke. Review by Joachim Goedhart at https://thenode.biologists.com/data-visualization-with-flying-colors/research/."
+        public let description = "The use of this palette is supported by others (Wong, 2011; Levine, 2009) and it is the default scale for the book “Fundamentals of Data Visualization” by Claus Wilke. Republished in Nature Methods by Bang Wong. (doi.org/10.1038/nmeth.1618) Review by Joachim Goedhart at https://thenode.biologists.com/data-visualization-with-flying-colors/research/."
         
         public let author = "Masataka Okabe, Kei Ito"
         public let license = "Awaiting Response"

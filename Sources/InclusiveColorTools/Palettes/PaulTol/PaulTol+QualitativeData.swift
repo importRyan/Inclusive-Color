@@ -7,7 +7,7 @@ public extension ICPalettes.PaulTol.QualitativeData {
         public let title = "Bright"
         
         public let description = """
-Recommended default. Bright qualitative colour scheme that is colour-blind safe. The main scheme for lines and their labels.
+Recommended default. Bright qualitative color scheme that is color-blind safe. The main scheme for lines and their labels.
 """
         public let tags: [ICPaletteUtilityTag] = [.qualitative]
         
@@ -85,7 +85,7 @@ Monochrome vision-safe, color-blind safe, optimized for contrast.
         public let title = "Vibrant"
         
         public let description = """
-Equally colour- blind safe as Bright. It has been designed for data visualization framework TensorBoard, built around their signature orange FF7043. That colour has been replaced here to make it print-friendly.
+Equally color- blind safe as Bright. It has been designed for data visualization framework TensorBoard, built around their signature orange FF7043. That color has been replaced here to make it print-friendly.
 """
         public let tags: [ICPaletteUtilityTag] = [.qualitative]
         
@@ -126,7 +126,7 @@ Equally colour- blind safe as Bright. It has been designed for data visualizatio
         public let title = "Muted"
         
         public let description = """
-Equally colour- blind safe as Vibrant. Has more colours, but lacking a clear red or medium blue. Pale grey is meant for bad data in maps.
+Equally color- blind safe as Vibrant. Has more colors, but lacking a clear red or medium blue. Pale grey is meant for bad data in maps.
 """
         
         public let tags: [ICPaletteUtilityTag] = [.qualitative]
@@ -174,7 +174,7 @@ Equally colour- blind safe as Vibrant. Has more colours, but lacking a clear red
         public let title = "Pale Text Backgrounds"
         
         public let description = """
-Background for black text. Indistinct in either normal or colour-blind vision. Meant for marking text such as cells in a table, not lines or maps.
+Background for black text. Indistinct in either normal or color-blind vision. Meant for marking text such as cells in a table, not lines or maps.
 """
         
         public let tags: [ICPaletteUtilityTag] = [.qualitative]
@@ -214,7 +214,7 @@ Background for black text. Indistinct in either normal or colour-blind vision. M
         public let title = "Dark Text"
         
         public let description = """
-For text on a white background. Indistinct in either normal or colour-blind vision. Meant for marking large blocks of text, not lines or maps.
+For text on a white background. Indistinct in either normal or color-blind vision. Meant for marking large blocks of text, not lines or maps.
 """
         
         public let tags: [ICPaletteUtilityTag] = [.qualitative]
@@ -254,7 +254,7 @@ For text on a white background. Indistinct in either normal or colour-blind visi
         public let title = "Light"
         
         public let description = """
-Fill labelled cells with lighter colours than contained in Bright, and with more clearly readable labels for black text than Pale. Reasonably distinct in both normal and colour-blind vision.
+Fill labelled cells with lighter colors than contained in Bright, and with more clearly readable labels for black text than Pale. Reasonably distinct in both normal and color-blind vision.
 """
         
         public let tags: [ICPaletteUtilityTag] = [.qualitative]

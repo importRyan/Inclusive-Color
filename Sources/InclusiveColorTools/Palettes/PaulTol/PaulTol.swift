@@ -11,7 +11,7 @@ public extension ICPalettes {
         public struct SequentialData { }
         
         internal static var author: String = { "Paul Tol" }()
-        internal static let link: URL = { URL(string: "https://personal.sron.nl/~pault/data/colourschemes.pdf")! }()
+        internal static let link: URL = { URL(string: "https://personal.sron.nl/~pault/data/colorschemes.pdf")! }()
         internal static var license: String = { "Standard 3-clause BSD" }()
         internal static var licenseCopy: String = { """
 Copyright (c) 2019 Paul Tol, All rights reserved.

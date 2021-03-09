@@ -7,7 +7,7 @@ public extension ICPalettes.PaulTol.DivergingData {
         public let title = "Sunset"
         
         public let description = """
-Colours can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
+colors can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
 """
         public let tags: [ICPaletteUtilityTag] = [.quantitative,
                                                    .divergingData]
@@ -59,7 +59,7 @@ Colours can be used as given or linearly interpolated using equidistant points, 
         public let title = "BuRd"
         
         public let description = """
-Colours can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
+colors can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
 """
         public let tags: [ICPaletteUtilityTag] = [.quantitative,
                                                    .divergingData]
@@ -107,7 +107,7 @@ Colours can be used as given or linearly interpolated using equidistant points, 
         public let title = "PRGn"
         
         public let description = """
-Print-friendly. Colours can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
+Print-friendly. colors can be used as given or linearly interpolated using equidistant points, but should not be mixed with other schemes. For clarity, the selected colors follow a non-linear progression.
 """
         public let tags: [ICPaletteUtilityTag] = [.quantitative,
                                                    .divergingData]
