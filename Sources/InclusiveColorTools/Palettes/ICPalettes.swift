@@ -10,7 +10,6 @@ public struct ICPalettes {
         case AllieOfisher_SixPalette1
         case AllieOfisher_SixPalette2
         case AllieOfisher_SixPalette3
-        case BangWong
         case BrewerHarrower_Diverging_BrownGreen
         case BrewerHarrower_Diverging_PinkYellowGreen
         case BrewerHarrower_Diverging_PurpleGreen
@@ -136,9 +135,6 @@ public struct ICPalettes {
                 
                 case .AllieOfisher_SixPalette3:
                     return ICPalettes.AllieOfisher.SixPalette3()
-                
-                case .BangWong:
-                    return ICPalettes.BangWong.WongNatureMethods()
                 
                 case .IBMDataVisStarter:
                     return ICPalettes.IBM.DataVisStarter()
