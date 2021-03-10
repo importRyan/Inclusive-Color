@@ -1,9 +1,9 @@
 import Foundation
 
 public struct IndexTrio: Hashable {
-    let text: Int
-    let bg: Int
-    let font: Int
+    public let text: Int
+    public let bg: Int
+    public let font: Int
 }
 
 public extension ICAssessment.TextColors where C: ICAnyColor {
