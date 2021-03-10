@@ -11,7 +11,7 @@ public extension ICPalettes {
         
         internal static var author: String = { "Cynthia Brewer and Mark Harrower" }()
         internal static var link: URL = { URL(string: "http://www.ColorBrewer.org")! }()
-        internal static var description: String = { "..." }()
+        internal static var description: String = { "Pennsylvania State University professor of geography Cynthia Brewer developed many palettes for cartography. Map designs require colors to be differentiable when not sequentially ordered and in complex patterns. Her color schemes were screened for colorblind readers by Steve Gardner in his masters thesis." }()
         internal static var license: String = { "Apache V2" }()
         internal static var licenseCopy: String = { """
 Apache-Style Software License for ColorBrewer software and ColorBrewer Color Schemes
