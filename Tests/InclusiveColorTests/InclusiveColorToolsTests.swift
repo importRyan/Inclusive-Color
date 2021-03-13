@@ -10,7 +10,6 @@ final class InclusiveColorToolsTests: XCTestCase {
     
     func testAPIStability_InclusiveColorToolsAutocompletion() {
         
-        XCTAssertTrue(InclusiveColorTools.palettes == ICPalettes.self)
         XCTAssertNotNil(InclusiveColorTools.simulator)
         
         // MARK: - These must compile!!

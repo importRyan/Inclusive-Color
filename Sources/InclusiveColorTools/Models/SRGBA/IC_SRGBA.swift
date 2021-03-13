@@ -8,7 +8,7 @@ import Foundation
 ///
 public struct ICSRGBA {
     public var rgb: sRGBColor
-    public let a: UnmutatedAlpha
+    public var a: UnmutatedAlpha
 }
 
-extension ICSRGBA: Hashable, Equatable {}
+extension ICSRGBA: Hashable, Equatable, Codable {}

@@ -28,6 +28,22 @@ class ICJzazbzColorSpaceTests: XCTestCase {
         XCTAssertEqual(result4, 0)
     }
     
+    func testConversionIsLossless() {
+        
+        let sut = ICJzazbzColorSpace.self
+        let test1 = sRGBColor.one
+        let test2 = sRGBColor(0.2, 0.3, 0.4)
+        
+        let result1_ = sut._transformSRGBtoJzazbz(test1)
+        let result1  = sut.transformJzazbzToSRGB(result1_)
+        
+        let result2_ = sut._transformSRGBtoJzazbz(test2)
+        let result2  = sut.transformJzazbzToSRGB(result2_)
+        
+        AssertColorsComparable(exp: test1, sut: result1, rgb888Tolerance: 0)
+        AssertColorsComparable(exp: test2, sut: result2, rgb888Tolerance: 0)
+    }
+    
     func testArbitrary0359Threshold_TracksDeltaE_ContrastsWithWCAG2RelativeLuminance() throws {
         let sut = ICJzazbzColorSpace.getScaledDeltaE
         let sut2 = ICMeaningfulColorsMetrics._experimental(._scaledJzazbzDeltaE_StronglyDifferentiableComparableToCIE2000).threshold

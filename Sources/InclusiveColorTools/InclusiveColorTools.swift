@@ -31,10 +31,6 @@ public struct InclusiveColorTools {
     
 // MARK: - TOOLS
     
-    /// Free-to-use color blindness-friendly color palettes, with annotations, citations, and license notes. Please consider contributing and providing feedback if palettes need additional usage flags.
-    ///
-    public static let palettes = ICPalettes.self
-    
     /// General-purpose simulator of color perception. You may use this singleton instance or initialize a custom simulator that replaces the default transformations.
     ///
     public static private(set) var simulator: ICVisionSimulator = { ICVisionSimulator_Machado.default }()

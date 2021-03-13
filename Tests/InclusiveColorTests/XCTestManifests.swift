@@ -34,8 +34,6 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(MeaningfulColorsMetricsTests.allTests),
         testCase(MeaningfulColorsStatisticsTests.allTests),
         testCase(NativeColorsDescriptionTests.allTests),
-        testCase(PalettesAppKitTests.allTests),
-        testCase(PalettesSwiftUITests.allTests),
         testCase(sRGBColorDebugStringsTests.allTests),
         testCase(ICSRGBACustomStringConvertibleTests.allTests),
         testCase(ICSRGBAInitByChannelTests.allTests),

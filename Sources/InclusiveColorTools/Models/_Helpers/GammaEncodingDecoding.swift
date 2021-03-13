@@ -62,3 +62,4 @@ extension ICColorChannel {
         static let k_416x: ICColorChannel = 0.41666666666
     }
 }
+

@@ -83,6 +83,55 @@ public struct ICJzazbzColorSpace {
         atan(color.z / color.y)
     }
     
+    /// Convert Jzazbz color to srgb
+    ///
+    /// - Parameter Jzazbz D65 color vector (J: absolute lightness, a: red-green, b: yellow-blue)
+    ///
+    /// - Returns: sRGB gamma-encoded D65 color vector
+    ///
+    /// [Safdar, Muhammad et al. 2017](https://www.osapublishing.org/oe/fulltext.cfm?uri=oe-25-13-15131&id=368272)
+    /// [Figshare Code Repo](https://figshare.com/articles/code/JzAzBz_m/5016299)
+    /// [Example Implementation](http://im.snibgo.com/jzazbz.htm)
+    ///
+    public static func transformJzazbzToSRGB(_ jzazbz: ICJzazbzColor) -> sRGBColor {
+        let eqA17iab  = _equation17ReverseIAB(jzazbz)
+        let eqA18lms_ = simd_mul(k.iabD65toLMSD65Matrix, eqA17iab)
+        let eqA19lms  = _equation19ReversePerceptualQuantizerEOTF(eqA18lms_)
+        let eqA20_23xyzd65 = _equation20to23LMStoXYZ(eqA19lms)
+        return _XYZtoSRGB(eqA20_23xyzd65)
+    }
+    
+    static func _equation17ReverseIAB(_ jzazbz: ICJzazbzColor) -> ICIABColor {
+        let denominator = 1 + k.d - k.d * (jzazbz[0] + k.d0)
+        let i = (jzazbz[0] + k.d0) / denominator
+        return ICIABColor(i, jzazbz[1], jzazbz[2])
+    }
+
+    static func _equation19ReversePerceptualQuantizerEOTF(_ input: ICLMS) -> ICLMS {
+        
+        func dequantize(_ channel: ICLMS.Scalar) -> ICLMS.Scalar {
+            let numerator = k.c1 - pow(channel, 1/k.p)
+            let denominator = k.c3 * pow(channel, 1/k.p) - k.c2
+            let inverse = pow((numerator/denominator), 1/k.n)
+            return inverse * k.maxCandelasPerM2
+        }
+        
+        return ICLMS(dequantize(input.x), dequantize(input.y), dequantize(input.z))
+    }
+
+    static func _equation20to23LMStoXYZ(_ lms: ICLMS) -> ICXYZColor {
+        let xyz_ = simd_mul(k.LMSD65toXYZD65Matrix, lms)
+        let x = (xyz_[0] + (k.b - 1) * xyz_[2]) / k.b
+        let y = (xyz_[1] + (k.g - 1) * xyz_[0]) / k.g
+        let z = xyz_[2]
+        return ICXYZColor(x, y, z)
+    }
+    
+    static func _XYZtoSRGB(_ xyz: ICXYZColor) -> sRGBColor {
+        let linearRGB = simd_mul(k.XYZD65tolinearRGBMatrix, xyz)
+        return linearRGB.encodeGamma()
+    }
+    
 }
 
 fileprivate extension ICJzazbzColorSpace {
@@ -120,6 +169,24 @@ fileprivate extension ICJzazbzColorSpace {
         static let d:  ICJzazbzColor.Scalar = -0.56
         static let d0: ICJzazbzColor.Scalar =  1.6295499532821566 * pow(10, -11)
         static let maxCandelasPerM2       = ICJzazbzColor.Scalar(10000)
+        
+        static let iabD65toLMSD65Matrix = simd_float3x3(rows: [
+            SIMD3(1,  0.13860504,  0.05804731),
+            SIMD3(1, -0.13860504, -0.05804731),
+            SIMD3(1, -0.09601924, -0.81189189)
+        ])
+
+        static let LMSD65toXYZD65Matrix = simd_float3x3(rows: [
+            SIMD3( 2.35500, -0.11180, -0.04272),
+            SIMD3( 0.42870,  0.88910, -0.08002),
+            SIMD3(-0.11130, -0.35550,  1.52700)
+        ])
+        
+        static let XYZD65tolinearRGBMatrix = simd_float3x3(rows: [
+            SIMD3( 3.2404542, -1.5371385, -0.4985314),
+            SIMD3(-0.9692660,  1.8760108,  0.0415560),
+            SIMD3( 0.0556434, -0.2040259,  1.0572252)
+        ])
     }
     
     static func convertSRGBtoXYZD65(_ srgb: sRGBColor) -> ICXYZColor {
