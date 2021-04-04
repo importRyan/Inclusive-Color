@@ -58,12 +58,12 @@ public extension Color {
         self.init(NSColor(srgbRed: CGFloat(srgba.rgb[0]),
                           green: CGFloat(srgba.rgb[1]),
                           blue: CGFloat(srgba.rgb[2]),
-                          alpha: 1))
+                          alpha: CGFloat(srgba.a)))
         #else
         self.init(UIColor(red: CGFloat(srgba.rgb[0]),
                           green: CGFloat(srgba.rgb[1]),
                           blue: CGFloat(srgba.rgb[2]),
-                          alpha: 1))
+                          alpha: CGFloat(srgba.a)))
         
         #endif
     }
