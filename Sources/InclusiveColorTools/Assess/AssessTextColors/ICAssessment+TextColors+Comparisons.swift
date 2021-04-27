@@ -4,6 +4,12 @@ public struct IndexTrio: Hashable {
     public let text: Int
     public let bg: Int
     public let font: Int
+    
+    public init(text: Int, bg: Int, font: Int) {
+        self.text = text
+        self.bg = bg
+        self.font = font
+    }
 }
 
 public extension ICAssessment.TextColors where C: ICAnyColor {
