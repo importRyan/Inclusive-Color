@@ -12,9 +12,9 @@ public extension ICSRGBA {
     var hsv: ICHSV {
         
         if rgb.red == 0 && rgb.green == 0 && rgb.blue == 0 {
-            return HSV(hue01: 0, saturation01: 0, value01: 0)
+            return ICHSV(hue01: 0, saturation01: 0, value01: 0)
         } else if rgb.red == 1 && rgb.green == 1 && rgb.blue == 1 {
-            return HSV(hue01: 0, saturation01: 0, value01: 1)
+            return ICHSV(hue01: 0, saturation01: 0, value01: 1)
         }
         
         let channelMax = max(rgb.red, rgb.green, rgb.blue)
