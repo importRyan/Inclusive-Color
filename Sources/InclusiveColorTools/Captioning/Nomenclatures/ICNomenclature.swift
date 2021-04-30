@@ -21,7 +21,7 @@ public protocol ICNomenclature {
     var rawValue: Int { get }
     
     /// Handles color names that involve more than just a hue value (e.g., brown)
-    static func handleExceptions(_ input: HSV) -> String?
+    static func handleExceptions(_ input: ICHSV) -> String?
 
     /// Initialize the requested segment, starting at segment 0 for red and ending at the position adjacent to red's anticlockwise side (e.g., -7.5 degrees in a 24 color nomenclature with 15 degree segments).
     /// - Parameter rawValue: Requested segment index
@@ -38,7 +38,7 @@ extension ICNomenclature {
     ///
     /// - Returns: String representing the hue
     ///
-    public static func getLabel(_ color: HSV) -> String {
+    public static func getLabel(_ color: ICHSV) -> String {
         
         guard !hueIsInRedOriginRange(color.hue01) else { return self.init(rawValue: 0)!.name }
         

@@ -70,7 +70,7 @@ public enum ICNomenclature_TheColorist: Int, Identifiable, CaseIterable, ICNomen
         }
     }
     
-    public static func handleExceptions(_ input: HSV) -> String? {
+    public static func handleExceptions(_ input: ICHSV) -> String? {
         
         let purpleHue: ClosedRange<HueDegrees> = (0.79...0.87)
         let purpleValue: ClosedRange<ICColorChannel> = (0.4...0.6)

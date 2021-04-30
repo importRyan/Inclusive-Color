@@ -8,7 +8,7 @@ extension NSColor: ICAnyColor {
     
     /// HSV values for a color. Reported with hue in degrees format (0-360) and saturation and value in decimal format (0...1)
     ///
-    public var hsv: HSV {
+    public var hsv: ICHSV {
         guard let isAColor = asValid_sRGBComponentBased() else {
             colorImportFailure()
             return (0, 0, 0)

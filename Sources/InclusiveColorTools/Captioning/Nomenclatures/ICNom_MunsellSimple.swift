@@ -38,7 +38,7 @@ public enum ICNomenclature_MunsellSimple: Int, Identifiable, CaseIterable, ICNom
         }
     }
     
-    public static func handleExceptions(_ input: HSV) -> String? {
+    public static func handleExceptions(_ input: ICHSV) -> String? {
 
         let brownHue: ClosedRange<HueDegrees> = (0.06...0.10)
         let brownSaturation: ClosedRange<ICColorChannel> = (0.5...0.7)

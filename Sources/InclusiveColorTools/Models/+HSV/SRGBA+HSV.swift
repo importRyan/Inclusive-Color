@@ -3,13 +3,19 @@ import Foundation
 
 public typealias HueDegrees = ICColorChannel
 
-public typealias HSV = (hue01: HueDegrees, saturation01: ICColorChannel, value01: ICColorChannel)
+public typealias ICHSV = (hue01: HueDegrees, saturation01: ICColorChannel, value01: ICColorChannel)
 
 public extension ICSRGBA {
     
     
     /// Hue Saturation and Value for an sRGB color, reported with hue degrees represented, like saturation and value, in a 0...1 decimal scale.
-    var hsv: HSV {
+    var hsv: ICHSV {
+        
+        if rgb.red == 0 && rgb.green == 0 && rgb.blue == 0 {
+            return HSV(hue01: 0, saturation01: 0, value01: 0)
+        } else if rgb.red == 1 && rgb.green == 1 && rgb.blue == 1 {
+            return HSV(hue01: 0, saturation01: 0, value01: 1)
+        }
         
         let channelMax = max(rgb.red, rgb.green, rgb.blue)
         let channelMin = min(rgb.red, rgb.green, rgb.blue)

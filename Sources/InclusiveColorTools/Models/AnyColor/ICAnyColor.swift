@@ -24,7 +24,7 @@ public protocol ICAnyColor: Hashable {
     
     /// HSV values for a color. Reported with hue in degrees format (0-360) and saturation and value in decimal format (0...1)
     ///
-    var hsv: HSV { get }
+    var hsv: ICHSV { get }
     
 }
 

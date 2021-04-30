@@ -70,7 +70,7 @@ extension UIColor: ICAnyColor {
     
     /// HSV values for a color. Reported with hue in degrees format (0-360) and saturation and value in decimal format (0...1)
     ///
-    public var hsv: HSV {
+    public var hsv: ICHSV {
         return self.sRGBA?.hsv ?? (0, 0, 0)
     }
     
